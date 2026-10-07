@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thực Hành: Tạo Bảng Trên MySQL Workbench | Student Table</title>
+  <meta name="description" content="Hướng dẫn chi tiết thực hành tạo CSDL demo và bảng Student trên MySQL Workbench với các trường id, name, age, country">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0b0f19;
+      --bg-secondary: #111827;
+      --bg-card: #1e293b;
+      --bg-card-hover: #26354a;
+      --border-color: #334155;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-blue: #38bdf8;
+      --accent-indigo: #6366f1;
+      --accent-green: #22c55e;
+      --accent-amber: #f59e0b;
+      --code-bg: #0f172a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(15, 23, 42, 0.98));
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .brand-text h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .brand-text p {
+      font-size: 0.75rem;
+      color: var(--accent-blue);
+      font-weight: 500;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-secondary);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-primary);
+      background: var(--bg-card);
+    }
+
+    .tab-btn.active {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent-indigo), #4f46e5);
+      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(17, 24, 39, 0.9));
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-banner::after {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .badge-success {
+      background: rgba(34, 197, 94, 0.15);
+      color: #4ade80;
+      border: 1px solid rgba(34, 197, 94, 0.3);
+    }
+
+    .hero-title {
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #ffffff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+      max-width: 800px;
+      margin-bottom: 1.5rem;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .meta-item {
+      background: var(--bg-secondary);
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+    }
+
+    .meta-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .meta-value {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .steps-list {
+      list-style: none;
+      counter-reset: step-counter;
+    }
+
+    .steps-list li {
+      counter-increment: step-counter;
+      position: relative;
+      padding-left: 3rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .steps-list li::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 2rem;
+      height: 2rem;
+      background: linear-gradient(135deg, var(--accent-blue), var(--accent-indigo));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: #fff;
+    }
+
+    .step-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+      color: #fff;
+    }
+
+    .code-container {
+      background: var(--code-bg);
+      border: 1px solid #1e293b;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 1rem 0;
+    }
+
+    .code-header {
+      background: #090d16;
+      padding: 0.5rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .code-header span {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .copy-btn {
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: var(--text-primary);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-indigo);
+      border-color: var(--accent-indigo);
+      color: #fff;
+    }
+
+    pre code {
+      display: block;
+      padding: 1.25rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+      overflow-x: auto;
+    }
+
+    .img-preview {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      margin: 1rem 0;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.9rem;
+    }
+
+    th {
+      background: #1e293b;
+      font-weight: 700;
+      color: var(--accent-blue);
+    }
+
+    tr:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .alert {
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+    }
+
+    .alert-info {
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: #7dd3fc;
+    }
+
+    .alert-success {
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #86efac;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-top: 3rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-icon">🐬</div>
+        <div class="brand-text">
+          <h1>MySQL Workbench Practice</h1>
+          <p>TẠO BẢNG STUDENT TRONG CSDL DEMO</p>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <button class="tab-btn active" onclick="switchTab('overview')">Tổng Quan</button>
+        <button class="tab-btn" onclick="switchTab('sql')">Kịch Bản SQL</button>
+        <button class="tab-btn" onclick="switchTab('structure')">Cấu Trúc & Dữ Liệu</button>
+        <button class="tab-btn" onclick="switchTab('diagrams')">Sơ Đồ Trực Quan</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero-banner">
+      <span class="badge badge-success">✓ Đã Hoàn Thành Thực Hành</span>
+      <h2 class="hero-title">[Thực hành] Tạo bảng trên MySQL Workbench</h2>
+      <p class="hero-desc">Luyện tập các thao tác khởi tạo cơ sở dữ liệu `demo` và tạo bảng `Student` chứa các trường (id, name, age, country) bằng câu lệnh SQL chuẩn trên MySQL Workbench 8.0 CE.</p>
+      
+      <div class="meta-grid">
+        <div class="meta-item">
+          <div class="meta-label">Cơ sở dữ liệu</div>
+          <div class="meta-value">demo</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Bảng (Entity)</div>
+          <div class="meta-value">Student</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Số trường (Columns)</div>
+          <div class="meta-value">4 (id, name, age, country)</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">GitHub Sinh Viên</div>
+          <div class="meta-value">proyctk03-eng</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 1: TỔNG QUAN -->
+    <div id="tab-overview" class="tab-content active">
+      <div class="card">
+        <h3 class="card-title">📌 Các Bước Thực Hiện Chi Tiết</h3>
+        <ol class="steps-list">
+          <li>
+            <div class="step-title">Bước 1: Viết và soạn thảo kịch bản SQL</div>
+            <p>Mở MySQL Workbench, đăng nhập tài khoản <code>root</code>. Nhấn biểu tượng <strong>New Query Tab</strong> (phím tắt <code>Ctrl + T</code>) để mở tab soạn thảo lệnh.</p>
+          </li>
+          <li>
+            <div class="step-title">Bước 2: Khởi tạo CSDL `demo`</div>
+            <p>Thực thi câu lệnh tạo cơ sở dữ liệu mới và chuyển ngữ cảnh làm việc sang CSDL vừa tạo:</p>
+            <div class="code-container">
+              <div class="code-header">
+                <span>SQL Query</span>
+                <button class="copy-btn" onclick="copyCode('code-step2')">Sao chép</button>
+              </div>
+              <pre><code id="code-step2">CREATE DATABASE demo;
+USE demo;</code></pre>
+            </div>
+          </li>
+          <li>
+            <div class="step-title">Bước 3: Định nghĩa bảng `Student`</div>
+            <p>Tạo bảng sinh viên gồm 4 trường với kiểu dữ liệu tương ứng:</p>
+            <div class="code-container">
+              <div class="code-header">
+                <span>CREATE TABLE Student</span>
+                <button class="copy-btn" onclick="copyCode('code-step3')">Sao chép</button>
+              </div>
+              <pre><code id="code-step3">CREATE TABLE Student (
+    id INT,
+    name VARCHAR(200),
+    age INT,
+    country VARCHAR(50)
+);</code></pre>
+            </div>
+          </li>
+          <li>
+            <div class="step-title">Bước 4: Thực thi và xác nhận kết quả</div>
+            <p>Bấm biểu tượng <strong>Execute (Tia sét)</strong> hoặc <code>Ctrl + Shift + Enter</code>. Quan sát cửa sổ <strong>Action Output</strong> bên dưới để thấy trạng thái tích xanh <em>0 row(s) affected</em>. Nhấn <strong>Refresh</strong> ở ngăn Schemas để thấy bảng <code>Student</code>.</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">🖥️ Ảnh Chụp Giao Diện Thực Thi Trên MySQL Workbench</h3>
+        <img src="mysql_workbench_sql_create_table.png" alt="MySQL Workbench Create Table" class="img-preview">
+      </div>
+    </div>
+
+    <!-- TAB 2: KỊCH BẢN SQL -->
+    <div id="tab-sql" class="tab-content">
+      <div class="card">
+        <h3 class="card-title">📜 1. Kịch Bản SQL Cơ Bản Theo Đề Bài (01_create_table_student.sql)</h3>
+        <div class="code-container">
+          <div class="code-header">
+            <span>01_create_table_student.sql</span>
+            <button class="copy-btn" onclick="copyCode('code-full-basic')">Sao chép toàn bộ</button>
+          </div>
+          <pre><code id="code-full-basic">-- 1. Tạo CSDL
+CREATE DATABASE demo;
+
+-- 2. Chọn CSDL làm việc
+USE demo;
+
+-- 3. Tạo bảng Student
+CREATE TABLE Student (
+    id INT,
+    name VARCHAR(200),
+    age INT,
+    country VARCHAR(50)
+);
+
+-- 4. Kiểm tra cấu trúc
+SHOW TABLES;
+DESCRIBE Student;</code></pre>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">🚀 2. Kịch Bản Mở Rộng Chuẩn Doanh Nghiệp (02_create_table_student_advanced.sql)</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 1rem;">Áp dụng tiêu chuẩn <strong>Database Architect</strong>: Mã hóa utf8mb4 tiếng Việt, Khóa chính AUTO_INCREMENT, Ràng buộc CHECK/NOT NULL, Timestamp kiểm toán:</p>
+        <div class="code-container">
+          <div class="code-header">
+            <span>02_create_table_student_advanced.sql</span>
+            <button class="copy-btn" onclick="copyCode('code-full-adv')">Sao chép toàn bộ</button>
+          </div>
+          <pre><code id="code-full-adv">CREATE DATABASE IF NOT EXISTS demo
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_unicode_ci;
+
+USE demo;
+
+CREATE TABLE IF NOT EXISTS Student_Advanced (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(200) NOT NULL,
+    age INT NOT NULL CHECK (age >= 16 AND age <= 100),
+    country VARCHAR(50) NOT NULL DEFAULT 'Vietnam',
+    email VARCHAR(100) UNIQUE,
+    status ENUM('Active', 'Suspended', 'Graduated') DEFAULT 'Active',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: CẤU TRÚC & DỮ LIỆU -->
+    <div id="tab-structure" class="tab-content">
+      <div class="card">
+        <h3 class="card-title">📊 Cấu Trúc Metadata Bảng (DESCRIBE Student)</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Field (Tên cột)</th>
+              <th>Type (Kiểu dữ liệu)</th>
+              <th>Null</th>
+              <th>Key</th>
+              <th>Default</th>
+              <th>Ý nghĩa & Ứng dụng</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>id</code></td>
+              <td><code>INT</code></td>
+              <td>YES</td>
+              <td></td>
+              <td>NULL</td>
+              <td>Mã số định danh của sinh viên</td>
+            </tr>
+            <tr>
+              <td><code>name</code></td>
+              <td><code>VARCHAR(200)</code></td>
+              <td>YES</td>
+              <td></td>
+              <td>NULL</td>
+              <td>Họ và tên sinh viên (tối đa 200 ký tự)</td>
+            </tr>
+            <tr>
+              <td><code>age</code></td>
+              <td><code>INT</code></td>
+              <td>YES</td>
+              <td></td>
+              <td>NULL</td>
+              <td>Độ tuổi sinh viên</td>
+            </tr>
+            <tr>
+              <td><code>country</code></td>
+              <td><code>VARCHAR(50)</code></td>
+              <td>YES</td>
+              <td></td>
+              <td>NULL</td>
+              <td>Quốc tịch / Quê quán (tối đa 50 ký tự)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">📋 Dữ Liệu Kiểm Thử Thực Tế (SELECT * FROM Student)</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>age</th>
+              <th>country</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Nguyen Van An</td>
+              <td>20</td>
+              <td>Vietnam</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Tran Thi Bich</td>
+              <td>21</td>
+              <td>Vietnam</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>John Smith</td>
+              <td>22</td>
+              <td>United States</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Tanaka Kenji</td>
+              <td>19</td>
+              <td>Japan</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Le Hoang Nam</td>
+              <td>23</td>
+              <td>Vietnam</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="card">
+        <h3 class="card-title">🔍 Kết Quả Thanh Tra Bảng & Dữ Liệu Trực Quan</h3>
+        <img src="mysql_workbench_table_structure_and_data.png" alt="MySQL Workbench Table Inspector" class="img-preview">
+      </div>
+    </div>
+
+    <!-- TAB 4: SƠ ĐỒ TRỰC QUAN -->
+    <div id="tab-diagrams" class="tab-content">
+      <div class="card">
+        <h3 class="card-title">🏛️ Sơ Đồ Kiến Trúc Phân Tầng Dữ Liệu RDBMS</h3>
+        <img src="mysql_workbench_architecture_overview.png" alt="MySQL Architecture" class="img-preview">
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2026 Thực Hành MySQL Workbench | Học viên: <strong>proyctk03-eng</strong> | Báo cáo đạt chuẩn công nghệ thông tin</p>
+  </footer>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+      const targetBtn = Array.from(document.querySelectorAll('.tab-btn')).find(b => b.getAttribute('onclick').includes(tabId));
+      if (targetBtn) targetBtn.classList.add('active');
+
+      const targetContent = document.getElementById('tab-' + tabId);
+      if (targetContent) targetContent.classList.add('active');
+    }
+
+    function copyCode(id) {
+      const codeEl = document.getElementById(id);
+      if (!codeEl) return;
+      navigator.clipboard.writeText(codeEl.innerText).then(() => {
+        alert('Đã sao chép kịch bản SQL vào bộ nhớ đệm!');
+      });
+    }
+  </script>
+</body>
+</html>
