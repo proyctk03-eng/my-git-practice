@@ -47,3 +47,19 @@
 - **Báo cáo PDF:** [`Bao_Cao_Thuc_Hanh_Tao_Bang_MySQL_Workbench.pdf`](./thuc-hanh-tao-bang-mysql-workbench/Bao_Cao_Thuc_Hanh_Tao_Bang_MySQL_Workbench.pdf)
 - **Repository chuyên biệt chính thức:** [https://github.com/proyctk03-eng/thuc-hanh-tao-bang-mysql-workbench](https://github.com/proyctk03-eng/thuc-hanh-tao-bang-mysql-workbench)
 
+
+---
+
+## 🎓 BÀI TẬP BỔ SUNG: [Bài Tập] Xây Dựng Cơ Sở Dữ Liệu Quản Lý Sinh Viên
+
+> Đã hoàn thành 100% nội dung bài tập tạo schema `student-management`, tạo bảng `Class` (id, name) và bảng `Teacher` (id, name, age, country) trên MySQL Workbench (GUI & SQL).
+
+👉 **Xem chi tiết toàn bộ mã nguồn và hướng dẫn bài tập tại:** [Thư mục bai-tap-csdl-quan-ly-sinh-vien](./bai-tap-csdl-quan-ly-sinh-vien/README.md)
+
+- **File SQL Cơ Bản:** [`01_create_schema_and_tables_basic.sql`](./bai-tap-csdl-quan-ly-sinh-vien/01_create_schema_and_tables_basic.sql)
+- **File Hướng Dẫn GUI:** [`02_create_tables_gui_workflow.sql`](./bai-tap-csdl-quan-ly-sinh-vien/02_create_tables_gui_workflow.sql)
+- **File SQL Mô Hình Quan Hệ (PK/FK):** [`03_create_tables_advanced_relational.sql`](./bai-tap-csdl-quan-ly-sinh-vien/03_create_tables_advanced_relational.sql)
+- **Báo cáo PDF:** [`Bao_Cao_Bai_Tap_CSDL_Quan_Ly_Sinh_Vien.pdf`](./bai-tap-csdl-quan-ly-sinh-vien/Bao_Cao_Bai_Tap_CSDL_Quan_Ly_Sinh_Vien.pdf)
+- **Repository chuyên biệt chính thức:** [https://github.com/proyctk03-eng/bai-tap-csdl-quan-ly-sinh-vien](https://github.com/proyctk03-eng/bai-tap-csdl-quan-ly-sinh-vien)
+
+
