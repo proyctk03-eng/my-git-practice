@@ -63,3 +63,18 @@
 - **Repository chuyên biệt chính thức:** [https://github.com/proyctk03-eng/bai-tap-csdl-quan-ly-sinh-vien](https://github.com/proyctk03-eng/bai-tap-csdl-quan-ly-sinh-vien)
 
 
+---
+
+## 🔍 BÀI TẬP BỔ SUNG: [Thực Hành] Tạo Một Form Tìm Kiếm Google
+
+> Đã hoàn thành 100% nội dung bài tập tạo form tìm kiếm HTML kết nối Google Search và Bing Search, khảo sát phương thức GET vs POST.
+
+👉 **Xem chi tiết toàn bộ mã nguồn và hướng dẫn bài tập tại:** [Thư mục thuc-hanh-form-tim-kiem-google](./thuc-hanh-form-tim-kiem-google/README.md)
+
+- **File HTML Cơ Bản:** [`index_basic.html`](./thuc-hanh-form-tim-kiem-google/index_basic.html)
+- **File Web Tương Tác:** [`index.html`](./thuc-hanh-form-tim-kiem-google/index.html)
+- **Báo cáo PDF:** [`Bao_Cao_Thuc_Hanh_Form_Tim_Kiem_Google.pdf`](./thuc-hanh-form-tim-kiem-google/Bao_Cao_Thuc_Hanh_Form_Tim_Kiem_Google.pdf)
+- **Repository chuyên biệt chính thức:** [https://github.com/proyctk03-eng/thuc-hanh-form-tim-kiem-google](https://github.com/proyctk03-eng/thuc-hanh-form-tim-kiem-google)
+
+
+
