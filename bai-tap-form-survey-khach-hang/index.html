@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Research Survey - Customer Feedback Form</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --primary-light: #f0f9ff;
+            --primary-border: #bae6fd;
+            --accent: #2563eb;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --bg-canvas: #f8fafc;
+            --card-bg: #ffffff;
+            --border: #e2e8f0;
+            --border-hover: #cbd5e1;
+            --radius-md: 10px;
+            --radius-lg: 18px;
+            --shadow-card: 0 12px 30px -8px rgba(0, 0, 0, 0.06), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+            --shadow-btn: 0 6px 14px -2px rgba(2, 132, 199, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-canvas);
+            color: var(--text-dark);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        /* Top Navigation Bar */
+        .top-navbar {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+            padding: 14px 28px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            color: #ffffff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 17px;
+            box-shadow: 0 4px 10px rgba(2, 132, 199, 0.3);
+        }
+
+        .brand-text h1 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .brand-text p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-link {
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-link-outline {
+            color: #475569;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+        }
+
+        .btn-link-outline:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        .btn-link-primary {
+            background: var(--primary);
+            color: #ffffff;
+            border: 1px solid var(--primary);
+        }
+
+        .btn-link-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Hero Header */
+        .hero {
+            background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 36px 20px 24px;
+            text-align: center;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            border: 1px solid var(--primary-border);
+            margin-bottom: 12px;
+        }
+
+        .hero-title {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .hero-desc {
+            font-size: 15px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Main Workspace Container */
+        .main-container {
+            max-width: 820px;
+            margin: 32px auto 60px;
+            padding: 0 16px;
+        }
+
+        .survey-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 40px 36px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .section-divider {
+            margin: 32px 0 24px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-badge {
+            background: #f1f5f9;
+            color: #475569;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        .section-heading {
+            font-size: 17px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .field-label {
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .field-hint {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-weight: 400;
+        }
+
+        select.form-control {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 14.5px;
+            color: #0f172a;
+            background-color: #ffffff;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-md);
+            outline: none;
+            transition: all 0.2s ease;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 16px;
+            cursor: pointer;
+        }
+
+        select.form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+        }
+
+        /* Choice items (radio / checkbox) */
+        .choices-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .choice-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #f8fafc;
+            border: 1.5px solid var(--border);
+            padding: 11px 16px;
+            border-radius: var(--radius-md);
+            font-size: 14.5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .choice-card:hover {
+            background: var(--primary-light);
+            border-color: var(--primary-border);
+        }
+
+        .choice-card input[type="radio"],
+        .choice-card input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .other-input-group {
+            margin-top: 8px;
+            padding-left: 28px;
+        }
+
+        .input-subtext {
+            width: 100%;
+            padding: 10px 14px;
+            font-size: 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .input-subtext:focus {
+            border-color: var(--primary);
+        }
+
+        /* Currency input */
+        .currency-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .currency-symbol {
+            font-size: 20px;
+            font-weight: 700;
+            color: #475569;
+        }
+
+        .currency-input {
+            padding: 11px 14px;
+            font-size: 15px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-md);
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .currency-input:focus {
+            border-color: var(--primary);
+        }
+
+        .dollars-col {
+            width: 130px;
+        }
+
+        .cents-col {
+            width: 80px;
+        }
+
+        .currency-sublabel {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        /* Textarea */
+        textarea.form-control {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 14.5px;
+            color: #0f172a;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-md);
+            outline: none;
+            min-height: 120px;
+            resize: vertical;
+            line-height: 1.5;
+            transition: all 0.2s ease;
+        }
+
+        textarea.form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+        }
+
+        /* Likert Matrix Table */
+        .likert-wrapper {
+            overflow-x: auto;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: #ffffff;
+            margin-top: 12px;
+        }
+
+        .likert-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            min-width: 600px;
+        }
+
+        .likert-table th, .likert-table td {
+            padding: 14px 12px;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .likert-table thead th {
+            background: #f8fafc;
+            color: #475569;
+            font-weight: 700;
+            font-size: 13px;
+            width: 14%;
+        }
+
+        .likert-table thead th:first-child {
+            width: 44%;
+            text-align: left;
+            padding-left: 18px;
+        }
+
+        .likert-table tbody th {
+            text-align: left;
+            font-weight: 600;
+            color: #1e293b;
+            padding-left: 18px;
+        }
+
+        .likert-table tbody tr:hover {
+            background-color: #f0f9ff;
+        }
+
+        .likert-table input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* Buttons Row */
+        .action-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 36px;
+            padding-top: 24px;
+            border-top: 2px solid #f1f5f9;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            font-size: 15.5px;
+            font-weight: 700;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            border: none;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            color: #ffffff;
+            box-shadow: var(--shadow-btn);
+            flex: 2;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px -2px rgba(2, 132, 199, 0.35);
+        }
+
+        .btn-reset {
+            background: #f1f5f9;
+            color: #475569;
+            border: 1.5px solid #cbd5e1;
+            flex: 1;
+        }
+
+        .btn-reset:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        /* Modal Dialog for Survey Results */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            z-index: 100;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-card {
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 620px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: scale(0.95);
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1.5px solid #f1f5f9;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-close {
+            background: #f1f5f9;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            color: #64748b;
+        }
+
+        .modal-json {
+            background: #0f172a;
+            color: #38bdf8;
+            padding: 16px;
+            border-radius: var(--radius-md);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12.5px;
+            line-height: 1.6;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        /* Toast notification */
+        .toast-msg {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #0f172a;
+            color: #ffffff;
+            padding: 14px 22px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .toast-msg.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 13px;
+            border-top: 1px solid var(--border);
+            background: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <header class="top-navbar">
+        <div class="brand-container">
+            <div class="brand-logo">W</div>
+            <div class="brand-text">
+                <h1>CodeGym FullStack Lab</h1>
+                <p>[Bài tập] Tạo Form Lấy Survey Khách Hàng (Wufoo Template)</p>
+            </div>
+        </div>
+        <div class="nav-actions">
+            <a href="survey_basic.html" target="_blank" class="btn-link btn-link-outline">Mở Form Cơ Bản &nearr;</a>
+            <a href="https://gallery.wufoo.com/embed/pyej3161l9pt0d/def/embedKey=pyej3161l9pt0d89279" target="_blank" class="btn-link btn-link-outline">Mẫu Wufoo Gốc &nearr;</a>
+            <a href="https://github.com/proyctk03-eng/bai-tap-form-survey-khach-hang" target="_blank" class="btn-link btn-link-primary">GitHub Repo &nearr;</a>
+        </div>
+    </header>
+
+    <!-- Hero Header -->
+    <section class="hero">
+        <div class="hero-pill">
+            <span>📊</span> Customer Satisfaction & Market Research
+        </div>
+        <h2 class="hero-title">Khảo Sát Ý Kiến & Nghiên Cứu Thị Trường</h2>
+        <p class="hero-desc">Biểu mẫu khảo sát chuyên sâu theo chuẩn Wufoo Gallery: Dropdown, Radio, Checkbox, Currency, Textarea và Likert Matrix Scale.</p>
+    </section>
+
+    <!-- Main Workspace -->
+    <main class="main-container">
+        <div class="survey-card">
+            
+            <form id="survey-form" onsubmit="handleSurveySubmit(event)" onreset="handleSurveyReset()">
+
+                <!-- SECTION 1: NHÂN KHẨU HỌC -->
+                <div class="section-divider">
+                    <span class="section-badge">Phần 1</span>
+                    <span class="section-heading">Thông tin nhân khẩu học (Demographics)</span>
+                </div>
+
+                <!-- Câu 1: Age Range -->
+                <div class="form-group">
+                    <label class="field-label" for="age">1. What is your age range? (Độ tuổi của bạn)</label>
+                    <select id="age" name="age" class="form-control" required>
+                        <option value="" disabled selected>-- Select an age range --</option>
+                        <option value="18-24" selected>18-24</option>
+                        <option value="25-34">25-34</option>
+                        <option value="35-50">35-50</option>
+                        <option value="50+">50+</option>
+                    </select>
+                </div>
+
+                <!-- Câu 2: Yearly Income -->
+                <div class="form-group">
+                    <label class="field-label" for="income">2. What is your yearly income range? (Thu nhập hàng năm)</label>
+                    <select id="income" name="income" class="form-control" required>
+                        <option value="" disabled selected>-- Select income range --</option>
+                        <option value="$0 - $25,000">$0 - $25,000</option>
+                        <option value="$25,001 - $50,000" selected>$25,001 - $50,000</option>
+                        <option value="$50,001 - $100,000">$50,001 - $100,000</option>
+                        <option value="$100,000+">$100,000+</option>
+                    </select>
+                </div>
+
+                <!-- Câu 3: Gender Identity -->
+                <div class="form-group">
+                    <label class="field-label">3. Gender Identity (Bản dạng giới tính)</label>
+                    <div class="choices-container">
+                        <label class="choice-card">
+                            <input type="radio" name="gender" value="Male" checked required>
+                            <span>Male (Nam)</span>
+                        </label>
+                        <label class="choice-card">
+                            <input type="radio" name="gender" value="Female" required>
+                            <span>Female (Nữ)</span>
+                        </label>
+                        <label class="choice-card">
+                            <input type="radio" name="gender" value="Nonbinary" required>
+                            <span>Nonbinary (Phi nhị nguyên giới)</span>
+                        </label>
+                        <label class="choice-card">
+                            <input type="radio" name="gender" value="Other" id="gender-other-radio" required>
+                            <span>Other (Khác)</span>
+                        </label>
+                    </div>
+                    <div class="other-input-group">
+                        <input type="text" name="gender_other" id="gender-other-text" class="input-subtext" placeholder="Please specify if other (Vui lòng ghi rõ nếu chọn khác)...">
+                    </div>
+                </div>
+
+                <!-- SECTION 2: HÀNH VI TIÊU DÙNG -->
+                <div class="section-divider">
+                    <span class="section-badge">Phần 2</span>
+                    <span class="section-heading">Trải nghiệm & Thói quen sử dụng sản phẩm</span>
+                </div>
+
+                <!-- Câu 4: Products Purchased -->
+                <div class="form-group">
+                    <label class="field-label">
+                        4. Which of the following products have you purchased in the last 2 months?
+                        <div class="field-hint">Please check all that apply (Chọn tất cả sản phẩm bạn đã mua trong 2 tháng qua)</div>
+                    </label>
+                    <div class="choices-container">
+                        <label class="choice-card">
+                            <input type="checkbox" name="purchased_products" value="Product 1" checked>
+                            <span>Product 1 (Sản phẩm 1)</span>
+                        </label>
+                        <label class="choice-card">
+                            <input type="checkbox" name="purchased_products" value="Product 2">
+                            <span>Product 2 (Sản phẩm 2)</span>
+                        </label>
+                        <label class="choice-card">
+                            <input type="checkbox" name="purchased_products" value="Product 3" checked>
+                            <span>Product 3 (Sản phẩm 3)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Câu 5: Frequency -->
+                <div class="form-group">
+                    <label class="field-label">5. How often would you use our new product? (Tần suất bạn sẽ sử dụng sản phẩm mới)</label>
+                    <div class="choices-container">
+                        <label class="choice-card">
+                            <input type="radio" name="frequency" value="Daily" checked required>
+                            <span>Daily (Hằng ngày)</span>
+                        </label>
+                        <label class="choice-card">
+                            <input type="radio" name="frequency" value="Weekly" required>
+                            <span>Weekly (Hằng tuần)</span>
+                        </label>
+                        <label class="choice-card">
+                            <input type="radio" name="frequency" value="Monthly" required>
+                            <span>Monthly (Hằng tháng)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- SECTION 3: ĐỊNH GIÁ & ĐÓNG GÓP Ý KIẾN -->
+                <div class="section-divider">
+                    <span class="section-badge">Phần 3</span>
+                    <span class="section-heading">Mức giá kỳ vọng & Góp ý tính năng</span>
+                </div>
+
+                <!-- Câu 6: Willingness to Pay (Currency) -->
+                <div class="form-group">
+                    <label class="field-label">6. What would you pay for the new product? (Mức giá bạn sẵn sàng chi trả)</label>
+                    <div class="currency-box">
+                        <span class="currency-symbol">$</span>
+                        <div>
+                            <input type="number" name="price_dollars" class="currency-input dollars-col" value="49" min="0" required>
+                            <div class="currency-sublabel">Dollars (USD)</div>
+                        </div>
+                        <span class="currency-symbol">.</span>
+                        <div>
+                            <input type="number" name="price_cents" class="currency-input cents-col" value="99" min="0" max="99" required>
+                            <div class="currency-sublabel">Cents</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Câu 7: Feature Requests -->
+                <div class="form-group">
+                    <label class="field-label" for="features">7. What features would you like to see in the new product? (Tính năng bạn muốn thấy)</label>
+                    <textarea id="features" name="features" class="form-control" placeholder="Share your suggestions, requested capabilities, or improvements...">Giao diện thân thiện trên điện thoại, đồng bộ hóa dữ liệu thời gian thực và hỗ trợ thông báo tự động qua email.</textarea>
+                </div>
+
+                <!-- SECTION 4: THANG ĐO LIKERT MATRIX -->
+                <div class="section-divider">
+                    <span class="section-badge">Phần 4</span>
+                    <span class="section-heading">Thang đo mức độ đồng thuận (Likert Scale Matrix)</span>
+                </div>
+
+                <!-- Câu 8: Likert Matrix Table -->
+                <div class="form-group">
+                    <label class="field-label">8. Please rate your level of agreement with the following statements (Đánh giá mức độ đồng ý):</label>
+                    
+                    <div class="likert-wrapper">
+                        <table class="likert-table">
+                            <thead>
+                                <tr>
+                                    <th>Statements</th>
+                                    <th>Strongly Disagree<br>(1)</th>
+                                    <th>Disagree<br>(2)</th>
+                                    <th>Agree<br>(3)</th>
+                                    <th>Strongly Agree<br>(4)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Statement 1 -->
+                                <tr>
+                                    <th>Our products are priced fairly.<br><span style="font-size: 12px; color: #64748b; font-weight: normal;">(Sản phẩm có mức giá hợp lý)</span></th>
+                                    <td><input type="radio" name="rating_priced_fairly" value="Strongly Disagree" required></td>
+                                    <td><input type="radio" name="rating_priced_fairly" value="Disagree"></td>
+                                    <td><input type="radio" name="rating_priced_fairly" value="Agree" checked></td>
+                                    <td><input type="radio" name="rating_priced_fairly" value="Strongly Agree"></td>
+                                </tr>
+                                <!-- Statement 2 -->
+                                <tr>
+                                    <th>Our products are high quality.<br><span style="font-size: 12px; color: #64748b; font-weight: normal;">(Sản phẩm có chất lượng cao)</span></th>
+                                    <td><input type="radio" name="rating_high_quality" value="Strongly Disagree" required></td>
+                                    <td><input type="radio" name="rating_high_quality" value="Disagree"></td>
+                                    <td><input type="radio" name="rating_high_quality" value="Agree"></td>
+                                    <td><input type="radio" name="rating_high_quality" value="Strongly Agree" checked></td>
+                                </tr>
+                                <!-- Statement 3 -->
+                                <tr>
+                                    <th>You would recommend our product to a friend or coworker.<br><span style="font-size: 12px; color: #64748b; font-weight: normal;">(Sẵn sàng giới thiệu cho bạn bè/đồng nghiệp)</span></th>
+                                    <td><input type="radio" name="rating_recommend" value="Strongly Disagree" required></td>
+                                    <td><input type="radio" name="rating_recommend" value="Disagree"></td>
+                                    <td><input type="radio" name="rating_recommend" value="Agree"></td>
+                                    <td><input type="radio" name="rating_recommend" value="Strongly Agree" checked></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Submit & Reset Buttons -->
+                <div class="action-row">
+                    <button type="submit" class="btn btn-submit">
+                        <span>Gửi phiếu khảo sát (Submit Survey)</span> &rarr;
+                    </button>
+                    <button type="reset" class="btn btn-reset">
+                        <span>Nhập lại (Reset)</span>
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </main>
+
+    <!-- Modal hiển thị kết quả khảo sát đã gửi -->
+    <div id="survey-modal" class="modal-overlay">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="modal-title"><span>🎉</span> Khảo Sát Đã Gửi Thành Công!</h3>
+                <button class="btn-close" onclick="closeModal()">&times;</button>
+            </div>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 12px;">
+                Dưới đây là dữ liệu đã được thu thập và serialize theo cấu trúc FormData:
+            </p>
+            <pre class="modal-json" id="modal-json-content"></pre>
+            <div style="text-align: right;">
+                <button class="btn btn-link-primary" onclick="closeModal()">Đóng cửa sổ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast-msg">
+        <span id="toast-icon">✅</span>
+        <span id="toast-text">Thông báo</span>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 CodeGym FullStack Track &middot; [Bài tập] Tạo form lấy survey khách hàng (Wufoo Form) &middot; Học viên: Nguyễn Tuấn Đạt</p>
+    </footer>
+
+    <!-- JavaScript Xử Lý -->
+    <script>
+        function showToast(message, icon = '✅') {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-icon').textContent = icon;
+            document.getElementById('toast-text').textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        function handleSurveySubmit(e) {
+            e.preventDefault();
+            const form = document.getElementById('survey-form');
+            const formData = new FormData(form);
+            const surveyData = {};
+
+            formData.forEach((value, key) => {
+                if (surveyData[key]) {
+                    if (Array.isArray(surveyData[key])) {
+                        surveyData[key].push(value);
+                    } else {
+                        surveyData[key] = [surveyData[key], value];
+                    }
+                } else {
+                    surveyData[key] = value;
+                }
+            });
+
+            // Hiển thị modal JSON
+            document.getElementById('modal-json-content').textContent = JSON.stringify(surveyData, null, 2);
+            document.getElementById('survey-modal').classList.add('active');
+            showToast('Khảo sát khách hàng đã được gửi thành công!');
+        }
+
+        function closeModal() {
+            document.getElementById('survey-modal').classList.remove('active');
+        }
+
+        function handleSurveyReset() {
+            setTimeout(() => {
+                showToast('Đã khôi phục các câu hỏi khảo sát về mặc định!', '🔄');
+            }, 50);
+        }
+
+        // Tự động focus text khác khi bấm radio Other
+        document.getElementById('gender-other-radio').addEventListener('change', function() {
+            if (this.checked) {
+                document.getElementById('gender-other-text').focus();
+            }
+        });
+    </script>
+</body>
+</html>

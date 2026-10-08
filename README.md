@@ -124,3 +124,17 @@
 - **Giao Diện Tương Tác & HTTP POST Inspector:** [`index.html`](./bai-tap-form-dang-ky-nguoi-dung/index.html)
 - **Báo Cáo Kỹ Thuật (PDF):** [`Bao_Cao_Bai_Tap_Form_Dang_Ky_Nguoi_Dung.pdf`](./bai-tap-form-dang-ky-nguoi-dung/Bao_Cao_Bai_Tap_Form_Dang_Ky_Nguoi_Dung.pdf)
 - **Repository chuyên biệt chính thức:** [https://github.com/proyctk03-eng/bai-tap-form-dang-ky-nguoi-dung](https://github.com/proyctk03-eng/bai-tap-form-dang-ky-nguoi-dung)
+
+
+---
+
+## 📊 BÀI TẬP BỔ SUNG: [Bài Tập] Tạo Form Lấy Survey Khách Hàng (Wufoo Survey)
+
+> Đã hoàn thành 100% nội dung form khảo sát nghiên cứu thị trường theo mẫu Wufoo tiêu chuẩn, bao gồm 8 nhóm câu hỏi và bảng ma trận thang đo Likert Scale.
+
+👉 **Xem chi tiết toàn bộ mã nguồn và tài liệu bài tập tại:** [Thư mục bai-tap-form-survey-khach-hang](./bai-tap-form-survey-khach-hang/README.md)
+
+- **Form Khảo Sát Cơ Bản:** [`survey_basic.html`](./bai-tap-form-survey-khach-hang/survey_basic.html)
+- **Giao Diện Khảo Sát Tương Tác:** [`index.html`](./bai-tap-form-survey-khach-hang/index.html)
+- **Báo Cáo Kỹ Thuật (PDF):** [`Bao_Cao_Bai_Tap_Form_Survey_Khach_Hang.pdf`](./bai-tap-form-survey-khach-hang/Bao_Cao_Bai_Tap_Form_Survey_Khach_Hang.pdf)
+- **Repository chuyên biệt chính thức:** [https://github.com/proyctk03-eng/bai-tap-form-survey-khach-hang](https://github.com/proyctk03-eng/bai-tap-form-survey-khach-hang)
