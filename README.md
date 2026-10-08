@@ -79,17 +79,18 @@
 
 ---
 
-## 📊 BÀI TẬP BỔ SUNG: [Thực Hành] Tạo Bảng Đơn Giản Với Tiêu Đề Và Dữ Liệu
+## 📊 BÀI TẬP BỔ SUNG: [Thực Hành] Gộp Ô Trong Bảng Với Rowspan Và Colspan
 
-> Đã hoàn thành 100% nội dung bài tập tạo bảng danh sách học sinh (Họ và Tên, Tuổi, Lớp) bằng các thẻ HTML `<table>`, `<tr>`, `<th>`, `<td>`.
+> Đã hoàn thành 100% nội dung bài tập tạo thời khóa biểu với `rowspan="2"` và `colspan="2"` bằng HTML Table.
 
 👉 **Xem chi tiết toàn bộ mã nguồn và hướng dẫn bài tập tại:** [Thư mục thuc-hanh-tao-bang-html](./thuc-hanh-tao-bang-html/README.md)
 
 - **File HTML Cơ Bản:** [`index_basic.html`](./thuc-hanh-tao-bang-html/index_basic.html)
 - **File Web Trực Quan:** [`index.html`](./thuc-hanh-tao-bang-html/index.html)
 - **Ảnh Chụp Màn Hình Trình Duyệt:** [`browser_table_result_screenshot.png`](./thuc-hanh-tao-bang-html/browser_table_result_screenshot.png)
-- **File Báo Cáo Nộp Bài (.docx ≤ 2MB):** [`Bao_Cao_Thuc_Hanh_Tao_Bang_HTML.docx`](./thuc-hanh-tao-bang-html/Bao_Cao_Thuc_Hanh_Tao_Bang_HTML.docx)
+- **File Báo Cáo Nộp Bài (.pdf ≤ 2MB):** [`Bao_Cao_Thuc_Hanh_Gop_O_Trong_Bang.pdf`](./thuc-hanh-tao-bang-html/Bao_Cao_Thuc_Hanh_Gop_O_Trong_Bang.pdf)
 - **Repository chuyên biệt chính thức:** [https://github.com/proyctk03-eng/thuc-hanh-tao-bang-html](https://github.com/proyctk03-eng/thuc-hanh-tao-bang-html)
+
 
 
 
