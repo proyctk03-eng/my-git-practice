@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng ký người dùng</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px 16px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e2e8f0;
+            width: 100%;
+            max-width: 480px;
+            padding: 36px 32px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #eff6ff;
+            color: #2563eb;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            border: 1px solid #bfdbfe;
+            margin-bottom: 8px;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        p.desc {
+            font-size: 14px;
+            color: #64748b;
+            margin-top: 4px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label.form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 8px;
+        }
+
+        label.form-label .required {
+            color: #ef4444;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 12px 14px;
+            font-size: 14.5px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.2s ease;
+            color: #0f172a;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 6px;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14.5px;
+            font-weight: 500;
+            cursor: pointer;
+            color: #1e293b;
+        }
+
+        .radio-label input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #2563eb;
+            cursor: pointer;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 13px;
+            background-color: #2563eb;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.25);
+            transition: all 0.2s ease;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .note {
+            margin-top: 20px;
+            padding: 12px;
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .note strong {
+            color: #334155;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="header">
+            <span class="badge">HTTP POST Form</span>
+            <h2>Đăng ký người dùng</h2>
+            <p class="desc">Điền đầy đủ thông tin bên dưới để gửi dữ liệu</p>
+        </div>
+
+        <!-- FORM GỬI DỮ LIỆU BẰNG PHƯƠNG THỨC POST LÊN ENDPOINT CODEGYM -->
+        <form action="http://demo.codegym.vn/6/registration_form/register.php" method="POST">
+            <!-- 1. Họ và tên: name="name" -->
+            <div class="form-group">
+                <label class="form-label" for="name">Họ và tên <span class="required">*</span></label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    placeholder="Ví dụ: Nguyễn Văn An" 
+                    required 
+                />
+            </div>
+
+            <!-- 2. Email: name="email" -->
+            <div class="form-group">
+                <label class="form-label" for="email">Địa chỉ Email <span class="required">*</span></label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    placeholder="nguyenvanan@gmail.com" 
+                    required 
+                />
+            </div>
+
+            <!-- 3. Số điện thoại: name="phone" -->
+            <div class="form-group">
+                <label class="form-label" for="phone">Số điện thoại <span class="required">*</span></label>
+                <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone" 
+                    placeholder="0912345678" 
+                    pattern="[0-9]{10,11}" 
+                    required 
+                />
+            </div>
+
+            <!-- 4. Giới tính: name="gender" -->
+            <div class="form-group">
+                <label class="form-label">Giới tính <span class="required">*</span></label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="gender" value="Nam" checked required>
+                        <span>Nam</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="gender" value="Nữ" required>
+                        <span>Nữ</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 5. Nút Đăng ký (Submit) -->
+            <button type="submit" class="btn-submit">Đăng ký</button>
+
+            <div class="note">
+                <strong>Ghi chú kỹ thuật:</strong> Dữ liệu sẽ được gửi qua phương thức <code>POST</code> tới <code>http://demo.codegym.vn/6/registration_form/register.php</code> với các tham số: <code>name</code>, <code>email</code>, <code>phone</code>, <code>gender</code>.
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

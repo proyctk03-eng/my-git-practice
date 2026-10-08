@@ -110,3 +110,17 @@
 - **Cổng Tổng Hợp Tương Tác (Live Data Inspector):** [`index.html`](./bai-tap-tao-form-don-gian/index.html)
 - **Báo Cáo Kỹ Thuật (PDF):** [`Bao_Cao_Bai_Tap_Tao_Form_Don_Gian.pdf`](./bai-tap-tao-form-don-gian/Bao_Cao_Bai_Tap_Tao_Form_Don_Gian.pdf)
 - **Repository chuyên biệt chính thức:** [https://github.com/proyctk03-eng/bai-tap-tao-form-don-gian](https://github.com/proyctk03-eng/bai-tap-tao-form-don-gian)
+
+
+---
+
+## 👤 BÀI TẬP BỔ SUNG: [Bài Tập] Tạo Giao Diện Form Đăng Ký Người Dùng (HTTP POST)
+
+> Đã hoàn thành 100% nội dung form đăng ký người dùng với phương thức POST gửi đến endpoint CodeGym, chuẩn 4 trường: `name`, `email`, `phone`, `gender`.
+
+👉 **Xem chi tiết toàn bộ mã nguồn và tài liệu bài tập tại:** [Thư mục bai-tap-form-dang-ky-nguoi-dung](./bai-tap-form-dang-ky-nguoi-dung/README.md)
+
+- **Form HTML Cơ Bản:** [`register_basic.html`](./bai-tap-form-dang-ky-nguoi-dung/register_basic.html)
+- **Giao Diện Tương Tác & HTTP POST Inspector:** [`index.html`](./bai-tap-form-dang-ky-nguoi-dung/index.html)
+- **Báo Cáo Kỹ Thuật (PDF):** [`Bao_Cao_Bai_Tap_Form_Dang_Ky_Nguoi_Dung.pdf`](./bai-tap-form-dang-ky-nguoi-dung/Bao_Cao_Bai_Tap_Form_Dang_Ky_Nguoi_Dung.pdf)
+- **Repository chuyên biệt chính thức:** [https://github.com/proyctk03-eng/bai-tap-form-dang-ky-nguoi-dung](https://github.com/proyctk03-eng/bai-tap-form-dang-ky-nguoi-dung)
