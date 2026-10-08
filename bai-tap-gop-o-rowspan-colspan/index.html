@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bảng quản lý lịch họp công ty ứng dụng thuộc tính rowspan và colspan trong HTML5">
+    <title>Lịch họp công ty - Quản lý lịch biểu doanh nghiệp</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --primary-light: #eef2ff;
+            --secondary: #0ea5e9;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --row-alt: #f8fafc;
+            --row-hover: #f1f5f9;
+            --badge-rowspan-bg: #f3e8ff;
+            --badge-rowspan-text: #7e22ce;
+            --badge-rowspan-border: #d8b4fe;
+            --badge-colspan-bg: #ecfdf5;
+            --badge-colspan-text: #047857;
+            --badge-colspan-border: #a7f3d0;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 32px 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Top Header */
+        header.page-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .badge-code {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: var(--primary-light);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 0.825rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            border: 1px solid #c7d2fe;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.025em;
+            margin-bottom: 8px;
+        }
+
+        p.subtitle {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 18px 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .stat-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+        }
+
+        .icon-blue { background: #e0f2fe; color: #0284c7; }
+        .icon-purple { background: #f3e8ff; color: #7c3aed; }
+        .icon-emerald { background: #d1fae5; color: #059669; }
+        .icon-amber { background: #fef3c7; color: #d97706; }
+
+        .stat-info .stat-value {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1.2;
+        }
+
+        .stat-info .stat-label {
+            font-size: 0.825rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Controls Toolbar */
+        .toolbar {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .toolbar-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn:hover {
+            background: #e2e8f0;
+            color: var(--text-main);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+            box-shadow: 0 2px 4px rgba(79, 70, 229, 0.25);
+        }
+
+        .toolbar-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
+            padding: 7px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .toggle-btn:hover {
+            background: var(--primary-light);
+        }
+
+        .toggle-btn.active {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        /* Card Container for Table */
+        .table-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            margin-bottom: 32px;
+        }
+
+        .table-header-banner {
+            padding: 18px 24px;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .table-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .table-legend {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-size: 0.8rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        .legend-rowspan { background: #c084fc; }
+        .legend-colspan { background: #34d399; }
+
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        /* HTML Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: #334155;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 14px 18px;
+            border-bottom: 2px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+        }
+
+        th:last-child {
+            border-right: none;
+        }
+
+        td {
+            padding: 16px 18px;
+            border-bottom: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            color: #1e293b;
+            vertical-align: middle;
+            transition: background 0.15s ease;
+        }
+
+        td:last-child {
+            border-right: none;
+        }
+
+        tr:hover td {
+            background-color: #f1f5f9;
+        }
+
+        /* Specific Cell Stying */
+        .day-cell {
+            background-color: #f8fafc;
+            font-weight: 700;
+            color: #1e293b;
+            width: 180px;
+            position: relative;
+        }
+
+        .time-cell {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #475569;
+            width: 160px;
+            white-space: nowrap;
+        }
+
+        .content-cell {
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .meeting-title {
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .meeting-meta {
+            font-size: 0.825rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .meta-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .badge-room {
+            background-color: #e0e7ff;
+            color: #3730a3;
+        }
+
+        .badge-online {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge-important {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Multi-hour Colspan Cell */
+        .multi-hour-cell {
+            background: linear-gradient(90deg, #f0fdf4 0%, #ffffff 100%);
+            border-left: 3px solid #10b981;
+        }
+
+        .multi-hour-banner {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+
+        .badge-all-day {
+            background: #10b981;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 9999px;
+            letter-spacing: 0.02em;
+        }
+
+        /* Highlighting Classes when toggle active */
+        body.show-highlights td[rowspan] {
+            outline: 2px dashed #9333ea !important;
+            outline-offset: -2px;
+            background-color: #faf5ff !important;
+            position: relative;
+        }
+
+        body.show-highlights td[rowspan]::before {
+            content: 'rowspan="' attr(rowspan) '"';
+            position: absolute;
+            top: 4px;
+            right: 6px;
+            background: #7e22ce;
+            color: #ffffff;
+            font-size: 0.65rem;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        body.show-highlights td[colspan] {
+            outline: 2px dashed #059669 !important;
+            outline-offset: -2px;
+            background-color: #f0fdf4 !important;
+            position: relative;
+        }
+
+        body.show-highlights td[colspan]::before {
+            content: 'colspan="' attr(colspan) '"';
+            position: absolute;
+            top: 4px;
+            right: 6px;
+            background: #047857;
+            color: #ffffff;
+            font-size: 0.65rem;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        /* Explanation Box */
+        .guide-box {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 24px;
+            margin-top: 32px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .guide-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .guide-card {
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 18px;
+        }
+
+        .guide-card h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .guide-card.purple h3 { color: #7e22ce; }
+        .guide-card.emerald h3 { color: #047857; }
+
+        .guide-card code {
+            font-family: 'JetBrains Mono', monospace;
+            background: #e2e8f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            color: #0f172a;
+        }
+
+        footer.page-footer {
+            text-align: center;
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.75rem; }
+            .toolbar { flex-direction: column; align-items: stretch; }
+            .toolbar-left, .toolbar-right { justify-content: center; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="page-header">
+            <span class="badge-code">HTML Table Masterclass &bull; Rowspan & Colspan</span>
+            <h1>Lịch họp công ty</h1>
+            <p class="subtitle">Bảng theo dõi và quản lý lịch họp doanh nghiệp hàng tuần. Ứng dụng kỹ thuật gộp ô ngang và dọc với <code>rowspan</code> và <code>colspan</code> trong HTML5.</p>
+        </header>
+
+        <!-- Stats Overview -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon icon-blue">📅</div>
+                <div class="stat-info">
+                    <div class="stat-value">5 Ngày</div>
+                    <div class="stat-label">Từ Thứ Hai đến Thứ Sáu</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon icon-purple">👥</div>
+                <div class="stat-info">
+                    <div class="stat-value">9 Cuộc họp</div>
+                    <div class="stat-label">Tổng số phiên làm việc</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon icon-emerald">⏱️</div>
+                <div class="stat-info">
+                    <div class="stat-value">2 Sự kiện</div>
+                    <div class="stat-label">Họp kéo dài nhiều giờ (Colspan)</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon icon-amber">📌</div>
+                <div class="stat-info">
+                    <div class="stat-value">3 Ngày kép</div>
+                    <div class="stat-label">Nhiều cuộc họp (Rowspan)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls Toolbar -->
+        <div class="toolbar">
+            <div class="toolbar-left">
+                <span style="font-weight: 700; font-size: 0.85rem; color: #475569;">Lọc ngày:</span>
+                <button class="filter-btn active" onclick="filterDay('all')">Tất cả (5 ngày)</button>
+                <button class="filter-btn" onclick="filterDay('t2')">Thứ 2</button>
+                <button class="filter-btn" onclick="filterDay('t3')">Thứ 3</button>
+                <button class="filter-btn" onclick="filterDay('t4')">Thứ 4</button>
+                <button class="filter-btn" onclick="filterDay('t5')">Thứ 5</button>
+                <button class="filter-btn" onclick="filterDay('t6')">Thứ 6</button>
+            </div>
+            <div class="toolbar-right">
+                <button class="toggle-btn" id="toggleHighlightBtn" onclick="toggleHighlights()">
+                    <span>🔍</span>
+                    <span>Bật đánh dấu Rowspan & Colspan</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Main Table Card -->
+        <div class="table-card">
+            <div class="table-header-banner">
+                <div class="table-title">
+                    <span>📋</span>
+                    <span>Bảng lịch họp tuần 42 - Năm 2026</span>
+                </div>
+                <div class="table-legend">
+                    <div class="legend-item">
+                        <div class="legend-color legend-rowspan"></div>
+                        <span>Gộp ngày (Rowspan)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color legend-colspan"></div>
+                        <span>Kéo dài nhiều giờ (Colspan)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table id="meetingTable">
+                    <thead>
+                        <tr>
+                            <th scope="col" style="width: 22%;">Ngày</th>
+                            <th scope="col" style="width: 20%;">Giờ</th>
+                            <th scope="col">Nội dung cuộc họp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- THỨ HAI: 2 cuộc họp -> rowspan="2" -->
+                        <tr class="row-day day-t2">
+                            <td rowspan="2" class="day-cell">
+                                <div style="font-size: 1.05rem;">Thứ Hai</div>
+                                <div style="font-size: 0.8rem; color: #64748b; font-weight: normal;">12/10/2026</div>
+                            </td>
+                            <td class="time-cell">08:30 - 10:00</td>
+                            <td class="content-cell">
+                                <div class="meeting-title">Họp giao ban đầu tuần toàn công ty</div>
+                                <div class="meeting-meta">
+                                    <span class="meta-tag badge badge-room">📍 Hội trường A</span>
+                                    <span class="meta-tag">👤 Chủ trì: Ban Giám đốc</span>
+                                    <span class="meta-tag badge badge-important">Ưu tiên cao</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="row-day day-t2">
+                            <td class="time-cell">14:00 - 15:30</td>
+                            <td class="content-cell">
+                                <div class="meeting-title">Báo cáo tiến độ dự án ERP & Tự động hóa</div>
+                                <div class="meeting-meta">
+                                    <span class="meta-tag badge badge-room">📍 Phòng họp 201</span>
+                                    <span class="meta-tag">👤 Chủ trì: PM Nguyễn Văn Hải</span>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- THỨ BA: 1 cuộc họp kéo dài cả ngày -> colspan="2" -->
+                        <tr class="row-day day-t3">
+                            <td class="day-cell">
+                                <div style="font-size: 1.05rem;">Thứ Ba</div>
+                                <div style="font-size: 0.8rem; color: #64748b; font-weight: normal;">13/10/2026</div>
+                            </td>
+                            <td colspan="2" class="multi-hour-cell">
+                                <div class="multi-hour-banner">
+                                    <span class="badge-all-day">⭐ SỰ KIỆN KÉO DÀI CẢ NGÀY (COLSPAN)</span>
+                                    <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: #047857;">08:00 - 17:00</span>
+                                </div>
+                                <div class="meeting-title" style="font-size: 1.05rem; color: #065f46;">
+                                    Hội thảo định hướng chiến lược công nghệ & Chuyển đổi số doanh nghiệp 2026 - 2030
+                                </div>
+                                <div class="meeting-meta" style="color: #047857;">
+                                    <span class="meta-tag badge badge-online">📍 Trung tâm Hội nghị Quốc tế & Trực tuyến MS Teams</span>
+                                    <span class="meta-tag">👤 Toàn thể Cán bộ - Nhân viên khối Kỹ thuật & Nghiệp vụ</span>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- THỨ TƯ: 3 cuộc họp -> rowspan="3" -->
+                        <tr class="row-day day-t4">
+                            <td rowspan="3" class="day-cell">
+                                <div style="font-size: 1.05rem;">Thứ Tư</div>
+                                <div style="font-size: 0.8rem; color: #64748b; font-weight: normal;">14/10/2026</div>
+                            </td>
+                            <td class="time-cell">09:00 - 10:30</td>
+                            <td class="content-cell">
+                                <div class="meeting-title">Phỏng vấn kỹ thuật: Ứng viên Senior Frontend Engineer</div>
+                                <div class="meeting-meta">
+                                    <span class="meta-tag badge badge-room">📍 Phòng họp 102</span>
+                                    <span class="meta-tag">👤 Phỏng vấn viên: Tech Lead & HR</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="row-day day-t4">
+                            <td class="time-cell">11:00 - 12:00</td>
+                            <td class="content-cell">
+                                <div class="meeting-title">Thống nhất quy chuẩn thiết kế UI/UX & Design System</div>
+                                <div class="meeting-meta">
+                                    <span class="meta-tag badge badge-online">📍 Google Meet</span>
+                                    <span class="meta-tag">👤 Đội ngũ Design & Frontend</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="row-day day-t4">
+                            <td class="time-cell">15:00 - 16:30</td>
+                            <td class="content-cell">
+                                <div class="meeting-title">Tập huấn an toàn thông tin mạng & Bảo mật dữ liệu ISO 27001</div>
+                                <div class="meeting-meta">
+                                    <span class="meta-tag badge badge-room">📍 Hội trường B</span>
+                                    <span class="meta-tag">👤 Chuyên gia An ninh mạng</span>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- THỨ NĂM: 2 cuộc họp -> rowspan="2" -->
+                        <tr class="row-day day-t5">
+                            <td rowspan="2" class="day-cell">
+                                <div style="font-size: 1.05rem;">Thứ Năm</div>
+                                <div style="font-size: 0.8rem; color: #64748b; font-weight: normal;">15/10/2026</div>
+                            </td>
+                            <td class="time-cell">08:30 - 10:30</td>
+                            <td class="content-cell">
+                                <div class="meeting-title">Demo sản phẩm phiên bản Release Sprint 24 cho khách hàng</div>
+                                <div class="meeting-meta">
+                                    <span class="meta-tag badge badge-online">📍 Zoom Meeting (Khách hàng Tokyo, Nhật Bản)</span>
+                                    <span class="meta-tag">👤 Đội ngũ dự án Outsourcing</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="row-day day-t5">
+                            <td class="time-cell">14:00 - 16:00</td>
+                            <td class="content-cell">
+                                <div class="meeting-title">Review kiến trúc hệ thống đám mây Cloud Microservices</div>
+                                <div class="meeting-meta">
+                                    <span class="meta-tag badge badge-room">📍 Phòng họp 301</span>
+                                    <span class="meta-tag">👤 Solutions Architect & DevOps</span>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- THỨ SÁU: Cuộc họp Hackathon kéo dài nhiều giờ -> colspan="2" -->
+                        <tr class="row-day day-t6">
+                            <td class="day-cell">
+                                <div style="font-size: 1.05rem;">Thứ Sáu</div>
+                                <div style="font-size: 0.8rem; color: #64748b; font-weight: normal;">16/10/2026</div>
+                            </td>
+                            <td colspan="2" class="multi-hour-cell">
+                                <div class="multi-hour-banner">
+                                    <span class="badge-all-day">🔥 HACKATHON NỘI BỘ (COLSPAN)</span>
+                                    <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; color: #047857;">08:30 - 16:30</span>
+                                </div>
+                                <div class="meeting-title" style="font-size: 1.05rem; color: #065f46;">
+                                    Ngày hội Sáng tạo công nghệ & Lập trình AI Hackathon thường niên 2026
+                                </div>
+                                <div class="meeting-meta" style="color: #047857;">
+                                    <span class="meta-tag badge badge-room">📍 Không gian Innovation Hub - Tầng 8</span>
+                                    <span class="meta-tag">👤 Toàn thể kỹ sư công nghệ và ban cố vấn chuyên môn</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" style="background-color: #f8fafc; font-size: 0.85rem; color: #64748b; padding: 14px 20px;">
+                                💡 <strong>Ghi chú kỹ thuật:</strong> Bảng sử dụng <code>rowspan</code> tại các dòng Thứ Hai (rowspan="2"), Thứ Tư (rowspan="3"), Thứ Năm (rowspan="2"); và sử dụng <code>colspan="2"</code> tại các dòng Thứ Ba và Thứ Sáu cho cuộc họp kéo dài liên tục nhiều giờ.
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        <!-- Technical Guide Box -->
+        <div class="guide-box">
+            <h2 class="guide-title">
+                <span>📘</span>
+                <span>Kiến thức cốt lõi: Quy tắc gộp ô với Rowspan và Colspan</span>
+            </h2>
+            <div class="guide-grid">
+                <div class="guide-card purple">
+                    <h3>
+                        <span>↕️</span>
+                        <span>Thuộc tính Rowspan (Gộp hàng dọc)</span>
+                    </h3>
+                    <p>Sử dụng <code>rowspan="n"</code> để gộp <code>n</code> ô nằm theo chiều dọc của cùng một cột.</p>
+                    <ul style="margin-left: 20px; margin-top: 8px; font-size: 0.9rem; color: #475569;">
+                        <li>Ví dụ: Ô <strong>Thứ Hai</strong> có 2 cuộc họp &rarr; dùng <code>rowspan="2"</code>.</li>
+                        <li><strong>Quy tắc bù trừ:</strong> Tại hàng <code>&lt;tr&gt;</code> tiếp theo, <em>không khai báo lại</em> ô <code>&lt;td&gt;</code> cho cột Ngày nữa.</li>
+                    </ul>
+                </div>
+
+                <div class="guide-card emerald">
+                    <h3>
+                        <span>↔️</span>
+                        <span>Thuộc tính Colspan (Gộp cột ngang)</span>
+                    </h3>
+                    <p>Sử dụng <code>colspan="n"</code> để gộp <code>n</code> ô nằm liền kề nhau trên cùng một hàng ngang.</p>
+                    <ul style="margin-left: 20px; margin-top: 8px; font-size: 0.9rem; color: #475569;">
+                        <li>Ví dụ: Cuộc họp kéo dài nhiều giờ (cả ngày) &rarr; dùng <code>colspan="2"</code> gộp cột Giờ và Nội dung.</li>
+                        <li><strong>Quy tắc bù trừ:</strong> Tổng số cột của hàng đó sau khi tính cả <code>colspan</code> phải bằng đúng tổng số cột của bảng (3 cột).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="page-footer">
+            <p>&copy; 2026 Bài tập thực hành HTML5 - CodeGym. Phát triển bởi học viên.</p>
+            <p style="margin-top: 6px;">
+                <a href="https://github.com/proyctk03-eng/bai-tap-gop-o-rowspan-colspan" target="_blank" rel="noopener">
+                    Repository GitHub: proyctk03-eng/bai-tap-gop-o-rowspan-colspan
+                </a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Interactive Script -->
+    <script>
+        function toggleHighlights() {
+            const body = document.body;
+            const btn = document.getElementById('toggleHighlightBtn');
+            const isActive = body.classList.toggle('show-highlights');
+            
+            if (isActive) {
+                btn.classList.add('active');
+                btn.innerHTML = '<span>✨</span><span>Tắt chế độ đánh dấu</span>';
+            } else {
+                btn.classList.remove('active');
+                btn.innerHTML = '<span>🔍</span><span>Bật đánh dấu Rowspan & Colspan</span>';
+            }
+        }
+
+        function filterDay(dayKey) {
+            // Update active button
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const rows = document.querySelectorAll('.row-day');
+            if (dayKey === 'all') {
+                rows.forEach(r => r.style.display = '');
+            } else {
+                rows.forEach(r => {
+                    if (r.classList.contains('day-' + dayKey)) {
+                        r.style.display = '';
+                    } else {
+                        r.style.display = 'none';
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

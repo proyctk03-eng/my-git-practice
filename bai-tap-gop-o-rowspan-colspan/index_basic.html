@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lịch họp công ty</title>
+</head>
+<body>
+    <!-- Tiêu đề h1 theo đúng yêu cầu đề bài -->
+    <h1>Lịch họp công ty</h1>
+
+    <!-- Bảng hiển thị thông tin lịch họp gồm các cột: Ngày, Giờ, Nội dung cuộc họp -->
+    <!-- Sử dụng rowspan để gộp các ô trong cột Ngày khi có nhiều cuộc họp trong cùng một ngày -->
+    <!-- Sử dụng colspan để gộp ô nếu một cuộc họp kéo dài nhiều giờ -->
+    <table border="1" cellpadding="10" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Ngày</th>
+                <th>Giờ</th>
+                <th>Nội dung cuộc họp</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Thứ Hai: Có 2 cuộc họp trong cùng ngày -> gộp ô Ngày bằng rowspan="2" -->
+            <tr>
+                <td rowspan="2">Thứ Hai (12/10)</td>
+                <td>08:30 - 10:00</td>
+                <td>Họp giao ban đầu tuần toàn công ty</td>
+            </tr>
+            <tr>
+                <td>14:00 - 15:30</td>
+                <td>Báo cáo tiến độ dự án ERP & Quản trị doanh nghiệp</td>
+            </tr>
+
+            <!-- Thứ Ba: Cuộc họp kéo dài nhiều giờ (cả ngày) -> gộp ô bằng colspan="2" -->
+            <tr>
+                <td>Thứ Ba (13/10)</td>
+                <td colspan="2">08:00 - 17:00: Hội thảo định hướng chiến lược công nghệ và chuyển đổi số 2026 (Kéo dài cả ngày)</td>
+            </tr>
+
+            <!-- Thứ Tư: Có 3 cuộc họp trong cùng ngày -> gộp ô Ngày bằng rowspan="3" -->
+            <tr>
+                <td rowspan="3">Thứ Tư (14/10)</td>
+                <td>09:00 - 10:30</td>
+                <td>Phỏng vấn ứng viên Senior Frontend Developer</td>
+            </tr>
+            <tr>
+                <td>11:00 - 12:00</td>
+                <td>Thống nhất quy chuẩn thiết kế UI/UX với đối tác</td>
+            </tr>
+            <tr>
+                <td>15:00 - 16:30</td>
+                <td>Tập huấn bảo mật thông tin và an toàn dữ liệu ISO 27001</td>
+            </tr>
+
+            <!-- Thứ Năm: Có 2 cuộc họp trong cùng ngày -> gộp ô Ngày bằng rowspan="2" -->
+            <tr>
+                <td rowspan="2">Thứ Năm (15/10)</td>
+                <td>08:30 - 10:30</td>
+                <td>Demo sản phẩm phiên bản thử nghiệm cho khách hàng</td>
+            </tr>
+            <tr>
+                <td>14:00 - 16:00</td>
+                <td>Review kiến trúc hệ thống Microservices</td>
+            </tr>
+
+            <!-- Thứ Sáu: Cuộc họp sự kiện Hackathon kéo dài nhiều giờ -> gộp ô bằng colspan="2" -->
+            <tr>
+                <td>Thứ Sáu (16/10)</td>
+                <td colspan="2">08:30 - 16:30: Ngày hội Tech Hackathon & Sáng tạo giải pháp AI nội bộ (Kéo dài cả ngày)</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="3" style="text-align: left; background-color: #f5f5f5;">
+                    Ghi chú: Các cuộc họp đặc biệt kéo dài nhiều giờ được gộp ô bằng thuộc tính <code>colspan="2"</code>; các ngày có nhiều cuộc họp được gộp ô bằng thuộc tính <code>rowspan</code>.
+                </th>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>
