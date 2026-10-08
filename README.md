@@ -95,3 +95,18 @@
 
 
 
+
+
+---
+
+## 📝 BÀI TẬP BỔ SUNG: [Bài Tập] Tạo Form Đơn Giản & Đăng Ký Học Viên
+
+> Đã hoàn thành 100% nội dung Phần 1 (Form đơn giản) và Phần 2 (Form đăng ký học viên) với đầy đủ input types HTML5 và thiết kế chuẩn UI/UX.
+
+👉 **Xem chi tiết toàn bộ mã nguồn và tài liệu bài tập tại:** [Thư mục bai-tap-tao-form-don-gian](./bai-tap-tao-form-don-gian/README.md)
+
+- **Phần 1 - Form Đơn Giản:** [`part1_simple_form.html`](./bai-tap-tao-form-don-gian/part1_simple_form.html)
+- **Phần 2 - Form Đăng Ký Học Viên:** [`part2_student_registration_form.html`](./bai-tap-tao-form-don-gian/part2_student_registration_form.html)
+- **Cổng Tổng Hợp Tương Tác (Live Data Inspector):** [`index.html`](./bai-tap-tao-form-don-gian/index.html)
+- **Báo Cáo Kỹ Thuật (PDF):** [`Bao_Cao_Bai_Tap_Tao_Form_Don_Gian.pdf`](./bai-tap-tao-form-don-gian/Bao_Cao_Bai_Tap_Tao_Form_Don_Gian.pdf)
+- **Repository chuyên biệt chính thức:** [https://github.com/proyctk03-eng/bai-tap-tao-form-don-gian](https://github.com/proyctk03-eng/bai-tap-tao-form-don-gian)

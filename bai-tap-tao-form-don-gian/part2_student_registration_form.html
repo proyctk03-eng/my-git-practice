@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phần 2 - Form Đăng Ký Học Viên</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --primary-light: #f0f9ff;
+            --primary-border: #bae6fd;
+            --accent: #6366f1;
+            --secondary: #64748b;
+            --secondary-hover: #475569;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --border-focus: #0284c7;
+            --radius-md: 10px;
+            --radius-lg: 18px;
+            --shadow-card: 0 12px 30px -8px rgba(0, 0, 0, 0.06), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+            --shadow-btn: 0 6px 14px -2px rgba(2, 132, 199, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 36px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 680px;
+        }
+
+        .header-card {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            margin-bottom: 12px;
+            border: 1px solid var(--primary-border);
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1.25;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .form-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 36px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 1.5px solid #f1f5f9;
+        }
+
+        .section-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--primary-light);
+            color: var(--primary);
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .form-section {
+            margin-bottom: 26px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        @media (max-width: 600px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            .form-card {
+                padding: 24px 20px;
+            }
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .form-label .required {
+            color: #ef4444;
+            margin-left: 2px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 14px;
+            font-size: 15px;
+            color: var(--text-main);
+            background-color: #ffffff;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-md);
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--border-focus);
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+        }
+
+        .form-control::placeholder {
+            color: #94a3b8;
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 16px;
+            padding-right: 40px;
+            cursor: pointer;
+        }
+
+        textarea.form-control {
+            min-height: 90px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+
+        /* Radio & Checkbox Cards */
+        .option-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .option-card {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8fafc;
+            border: 1.5px solid var(--border);
+            padding: 10px 16px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .option-card:hover {
+            background: #f0f9ff;
+            border-color: var(--primary-border);
+        }
+
+        .option-card input[type="radio"],
+        .option-card input[type="checkbox"] {
+            width: 17px;
+            height: 17px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        @media (max-width: 500px) {
+            .checkbox-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Buttons */
+        .btn-row {
+            display: flex;
+            gap: 16px;
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1.5px solid #f1f5f9;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 13px 24px;
+            font-size: 15px;
+            font-weight: 700;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            border: none;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-submit {
+            background-color: var(--primary);
+            color: #ffffff;
+            box-shadow: var(--shadow-btn);
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-reset {
+            background-color: #f1f5f9;
+            color: var(--secondary);
+            border: 1.5px solid #cbd5e1;
+        }
+
+        .btn-reset:hover {
+            background-color: #e2e8f0;
+            color: var(--secondary-hover);
+        }
+
+        .info-footer {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .nav-links {
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            margin: 0 8px;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header-card">
+            <span class="badge">Phần 2: Yêu Cầu Đề Bài</span>
+            <h1 class="title">Form Đăng Ký Học Viên</h1>
+            <p class="subtitle">Biểu mẫu thu thập thông tin học viên với đầy đủ kiểu Input HTML5 tiêu chuẩn</p>
+        </header>
+
+        <main class="form-card">
+            <form action="" method="POST">
+                <!-- KHỐI 1: THÔNG TIN CÁ NHÂN -->
+                <div class="form-section">
+                    <div class="section-title">
+                        <span class="section-icon">👤</span>
+                        <span>1. Thông tin cá nhân học viên</span>
+                    </div>
+
+                    <!-- Họ và tên: name="fullname" -->
+                    <div class="form-group">
+                        <label class="form-label" for="fullname">Họ và tên <span class="required">*</span></label>
+                        <input 
+                            type="text" 
+                            id="fullname" 
+                            name="fullname" 
+                            class="form-control" 
+                            placeholder="Ví dụ: Nguyễn Văn An" 
+                            required 
+                        />
+                    </div>
+
+                    <div class="grid-2">
+                        <!-- Email: name="email" -->
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email liên hệ <span class="required">*</span></label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                name="email" 
+                                class="form-control" 
+                                placeholder="nguyenvanan@gmail.com" 
+                                required 
+                            />
+                        </div>
+
+                        <!-- Số điện thoại: name="phone" -->
+                        <div class="form-group">
+                            <label class="form-label" for="phone">Số điện thoại <span class="required">*</span></label>
+                            <input 
+                                type="tel" 
+                                id="phone" 
+                                name="phone" 
+                                class="form-control" 
+                                placeholder="0912 345 678" 
+                                pattern="[0-9]{10,11}" 
+                                required 
+                            />
+                        </div>
+                    </div>
+
+                    <div class="grid-2">
+                        <!-- Ngày sinh: name="birthday" -->
+                        <div class="form-group">
+                            <label class="form-label" for="birthday">Ngày sinh <span class="required">*</span></label>
+                            <input 
+                                type="date" 
+                                id="birthday" 
+                                name="birthday" 
+                                class="form-control" 
+                                required 
+                            />
+                        </div>
+
+                        <!-- Giới tính: Radio Button cùng name="gender" -->
+                        <div class="form-group">
+                            <label class="form-label">Giới tính <span class="required">*</span></label>
+                            <div class="option-group">
+                                <label class="option-card">
+                                    <input type="radio" name="gender" value="Nam" checked required>
+                                    <span>Nam</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="gender" value="Nữ" required>
+                                    <span>Nữ</span>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="gender" value="Khác" required>
+                                    <span>Khác</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Địa chỉ: name="address" -->
+                    <div class="form-group">
+                        <label class="form-label" for="address">Địa chỉ thường trú</label>
+                        <textarea 
+                            id="address" 
+                            name="address" 
+                            class="form-control" 
+                            rows="2" 
+                            placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố..."
+                        ></textarea>
+                    </div>
+                </div>
+
+                <!-- KHỐI 2: THÔNG TIN ĐÀO TẠO -->
+                <div class="form-section">
+                    <div class="section-title">
+                        <span class="section-icon">📚</span>
+                        <span>2. Nguyện vọng đăng ký khóa học</span>
+                    </div>
+
+                    <!-- Khóa học: Select Box name="course" -->
+                    <div class="form-group">
+                        <label class="form-label" for="course">Khóa học đăng ký <span class="required">*</span></label>
+                        <select id="course" name="course" class="form-control" required>
+                            <option value="" disabled selected>-- Chọn khóa học bạn muốn tham gia --</option>
+                            <option value="HTML & CSS">HTML & CSS (Nền tảng giao diện Web)</option>
+                            <option value="JavaScript">JavaScript (Lập trình tương tác & ES6+)</option>
+                            <option value="Java">Java (Lập trình hướng đối tượng Backend)</option>
+                            <option value="Python">Python (Lập trình ứng dụng & Phân tích dữ liệu)</option>
+                        </select>
+                    </div>
+
+                    <!-- Hình thức học: Radio Button cùng name="study_type" -->
+                    <div class="form-group">
+                        <label class="form-label">Hình thức học <span class="required">*</span></label>
+                        <div class="option-group">
+                            <label class="option-card">
+                                <input type="radio" name="study_type" value="Online" checked required>
+                                <span>🌐 Trực tuyến (Online)</span>
+                            </label>
+                            <label class="option-card">
+                                <input type="radio" name="study_type" value="Offline" required>
+                                <span>🏫 Tại trung tâm (Offline)</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- KHỐI 3: SỞ THÍCH VÀ GHI CHÚ -->
+                <div class="form-section">
+                    <div class="section-title">
+                        <span class="section-icon">💡</span>
+                        <span>3. Thông tin bổ sung & Ghi chú</span>
+                    </div>
+
+                    <!-- Sở thích: CheckBox cùng name="hobby" -->
+                    <div class="form-group">
+                        <label class="form-label">Sở thích cá nhân:</label>
+                        <div class="checkbox-grid">
+                            <label class="option-card">
+                                <input type="checkbox" name="hobby" value="Lap_trinh">
+                                <span>Lập trình</span>
+                            </label>
+                            <label class="option-card">
+                                <input type="checkbox" name="hobby" value="Doc_sach">
+                                <span>Đọc sách</span>
+                            </label>
+                            <label class="option-card">
+                                <input type="checkbox" name="hobby" value="The_thao">
+                                <span>Thể thao</span>
+                            </label>
+                            <label class="option-card">
+                                <input type="checkbox" name="hobby" value="Am_nhac">
+                                <span>Âm nhạc</span>
+                            </label>
+                            <label class="option-card">
+                                <input type="checkbox" name="hobby" value="Choi_game">
+                                <span>Chơi game</span>
+                            </label>
+                            <label class="option-card">
+                                <input type="checkbox" name="hobby" value="Du_lich">
+                                <span>Du lịch</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Ghi chú: Textarea name="note" -->
+                    <div class="form-group">
+                        <label class="form-label" for="note">Ghi chú hoặc nguyện vọng thêm:</label>
+                        <textarea 
+                            id="note" 
+                            name="note" 
+                            class="form-control" 
+                            rows="3" 
+                            placeholder="Ghi chú về thời gian học phù hợp hoặc câu hỏi dành cho ban tư vấn..."
+                        ></textarea>
+                    </div>
+                </div>
+
+                <!-- NÚT THAO TÁC: Submit "Đăng ký" và Reset "Nhập lại" -->
+                <div class="btn-row">
+                    <input type="submit" value="Đăng ký" class="btn btn-submit" />
+                    <input type="reset" value="Nhập lại" class="btn btn-reset" />
+                </div>
+            </form>
+        </main>
+
+        <div class="info-footer">
+            <p>Bài tập HTML Forms &middot; CodeGym FullStack &middot; 2026</p>
+            <div class="nav-links">
+                <a href="part1_simple_form.html">&larr; Xem Phần 1: Form đơn giản</a>
+                <a href="index.html">&rarr; Cổng tổng hợp 2 Form (Interactive Hub)</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

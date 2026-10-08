@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Bài tập] Tạo Form Đơn Giản - CodeGym Lab</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
+            --primary-border: #bfdbfe;
+            --accent: #0284c7;
+            --success: #10b981;
+            --success-light: #ecfdf5;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg-body: #0f172a;
+            --bg-canvas: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --radius-md: 10px;
+            --radius-lg: 18px;
+            --radius-xl: 24px;
+            --shadow-subtle: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+            --shadow-card: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+            --shadow-float: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-canvas);
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        /* Top Bar */
+        .top-navbar {
+            background: #ffffff;
+            border-bottom: 1px solid var(--border);
+            padding: 14px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand-logo {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #2563eb, #0284c7);
+            color: #ffffff;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 18px;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+        }
+
+        .brand-text h1 {
+            font-size: 17px;
+            font-weight: 700;
+            color: #0f172a;
+        }
+
+        .brand-text p {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-link {
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-link-outline {
+            color: #475569;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+        }
+
+        .btn-link-outline:hover {
+            background: #f1f5f9;
+            color: #0f172a;
+        }
+
+        .btn-link-primary {
+            background: var(--primary);
+            color: #ffffff;
+            border: 1px solid var(--primary);
+        }
+
+        .btn-link-primary:hover {
+            background: var(--primary-hover);
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 40px 24px 30px;
+            text-align: center;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #eff6ff;
+            color: #2563eb;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            border: 1px solid #bfdbfe;
+            margin-bottom: 16px;
+        }
+
+        .hero-title {
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #0f172a;
+            max-width: 800px;
+            margin: 0 auto 12px;
+        }
+
+        .hero-desc {
+            font-size: 16px;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 24px;
+        }
+
+        /* Tab Switcher */
+        .tab-bar-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .tab-bar {
+            background: #e2e8f0;
+            padding: 5px;
+            border-radius: 12px;
+            display: inline-flex;
+            gap: 6px;
+        }
+
+        .tab-btn {
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            background: transparent;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tab-btn.active {
+            background: #ffffff;
+            color: var(--primary);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Main Workspace Container */
+        .main-container {
+            max-width: 1180px;
+            margin: 36px auto;
+            padding: 0 20px;
+        }
+
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Two-Column Layout for Form & Live Inspector */
+        .form-layout {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 32px;
+            align-items: start;
+        }
+
+        @media (max-width: 992px) {
+            .form-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .card-header {
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1.5px solid #f1f5f9;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Form Controls */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .form-label .required {
+            color: var(--danger);
+            margin-left: 3px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 14px;
+            font-size: 14px;
+            color: #0f172a;
+            background-color: #ffffff;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-md);
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 16px;
+            padding-right: 40px;
+            cursor: pointer;
+        }
+
+        textarea.form-control {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Checkbox & Radio */
+        .option-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .option-flex {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .option-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8fafc;
+            border: 1.5px solid var(--border);
+            padding: 10px 14px;
+            border-radius: var(--radius-md);
+            font-size: 13.5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .option-box:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        .option-box input {
+            accent-color: var(--primary);
+            width: 17px;
+            height: 17px;
+            cursor: pointer;
+        }
+
+        /* Button Row */
+        .btn-row {
+            display: flex;
+            gap: 14px;
+            margin-top: 26px;
+            padding-top: 18px;
+            border-top: 1.5px solid #f1f5f9;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-submit {
+            background-color: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 4px 8px -1px rgba(37, 99, 235, 0.25);
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-reset {
+            background-color: #f1f5f9;
+            color: #475569;
+            border: 1.5px solid #cbd5e1;
+        }
+
+        .btn-reset:hover {
+            background-color: #e2e8f0;
+            color: #1e293b;
+        }
+
+        /* Inspector Side Panel */
+        .inspector-panel {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-card);
+            position: sticky;
+            top: 90px;
+        }
+
+        .inspector-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #f1f5f9;
+            color: #475569;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .inspector-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 6px;
+        }
+
+        .inspector-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .code-display {
+            background: #0f172a;
+            color: #38bdf8;
+            padding: 16px;
+            border-radius: var(--radius-md);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            line-height: 1.6;
+            overflow-x: auto;
+            max-height: 320px;
+            border: 1px solid #1e293b;
+        }
+
+        .kv-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 14px;
+            font-size: 12.5px;
+        }
+
+        .kv-table th, .kv-table td {
+            padding: 8px 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .kv-table th {
+            font-weight: 700;
+            color: #475569;
+            background: #f8fafc;
+        }
+
+        .kv-name {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            color: #2563eb;
+        }
+
+        .toast-msg {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #0f172a;
+            color: #ffffff;
+            padding: 14px 20px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-float);
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .toast-msg.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Documentation & Reference Tab */
+        .doc-section {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .doc-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 14px;
+        }
+
+        .spec-table th, .spec-table td {
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            font-size: 13.5px;
+            text-align: left;
+        }
+
+        .spec-table th {
+            background-color: #f8fafc;
+            font-weight: 700;
+            color: #334155;
+        }
+
+        .spec-code {
+            font-family: 'JetBrains Mono', monospace;
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #0284c7;
+            font-size: 12.5px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 13px;
+            border-top: 1px solid var(--border);
+            margin-top: 60px;
+            background: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <header class="top-navbar">
+        <div class="brand-container">
+            <div class="brand-logo">CG</div>
+            <div class="brand-text">
+                <h1>CodeGym FullStack Lab</h1>
+                <p>[Bài tập] Tạo form đơn giản &middot; HTML5 Form Elements</p>
+            </div>
+        </div>
+        <div class="nav-actions">
+            <a href="part1_simple_form.html" target="_blank" class="btn-link btn-link-outline">Mở Form Phần 1 &nearr;</a>
+            <a href="part2_student_registration_form.html" target="_blank" class="btn-link btn-link-outline">Mở Form Phần 2 &nearr;</a>
+            <a href="https://github.com/proyctk03-eng/bai-tap-tao-form-don-gian" target="_blank" class="btn-link btn-link-primary">GitHub Repo &nearr;</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-pill">
+            <span>✨</span> HTML5 Web Development Standard
+        </div>
+        <h2 class="hero-title">Khám Phá Và Thực Hành Tạo Form Đơn Giản & Form Đăng Ký</h2>
+        <p class="hero-desc">Thực hành toàn diện các thẻ input, textarea, select box, radio button, checkbox, thuộc tính name và cơ chế submit/reset dữ liệu.</p>
+
+        <!-- Tab Controls -->
+        <div class="tab-bar-wrapper">
+            <div class="tab-bar">
+                <button class="tab-btn active" onclick="switchTab('part1')">
+                    <span>📝</span> Phần 1: Form Đơn Giản
+                </button>
+                <button class="tab-btn" onclick="switchTab('part2')">
+                    <span>🎓</span> Phần 2: Đăng Ký Học Viên
+                </button>
+                <button class="tab-btn" onclick="switchTab('specs')">
+                    <span>📖</span> Bảng Tra Cứu Kỹ Thuật
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Workspace -->
+    <main class="main-container">
+
+        <!-- TAB 1: PHẦN 1 - FORM ĐƠN GIẢN -->
+        <div id="tab-part1" class="tab-pane active">
+            <div class="form-layout">
+                <!-- Form Phần 1 Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><span>📋</span> Biểu mẫu Phần 1: Form Đơn Giản</h3>
+                        <p class="card-desc">Thiết lập chính xác các trường `yourname`, `email`, checkbox `hobby`, submit "Gửi thông tin", reset "Nhập lại".</p>
+                    </div>
+
+                    <form id="form-part1" onsubmit="handlePart1Submit(event)" onreset="handleReset('Phần 1')">
+                        <!-- Họ và tên: yourname -->
+                        <div class="form-group">
+                            <label class="form-label" for="p1-yourname">Họ và tên <span class="required">*</span></label>
+                            <input 
+                                type="text" 
+                                id="p1-yourname" 
+                                name="yourname" 
+                                class="form-control" 
+                                placeholder="Nhập họ và tên..." 
+                                value="Nguyễn Tuấn Đạt" 
+                                required 
+                            />
+                        </div>
+
+                        <!-- Email: email -->
+                        <div class="form-group">
+                            <label class="form-label" for="p1-email">Địa chỉ Email <span class="required">*</span></label>
+                            <input 
+                                type="email" 
+                                id="p1-email" 
+                                name="email" 
+                                class="form-control" 
+                                placeholder="name@domain.com" 
+                                value="proyctk03@gmail.com" 
+                                required 
+                            />
+                        </div>
+
+                        <!-- Checkbox Sở thích: hobby -->
+                        <div class="form-group">
+                            <label class="form-label">Sở thích cá nhân (cùng name="hobby"):</label>
+                            <div class="option-grid">
+                                <label class="option-box">
+                                    <input type="checkbox" name="hobby" value="the_thao" checked>
+                                    <span>Thể thao</span>
+                                </label>
+                                <label class="option-box">
+                                    <input type="checkbox" name="hobby" value="am_nhac">
+                                    <span>Âm nhạc</span>
+                                </label>
+                                <label class="option-box">
+                                    <input type="checkbox" name="hobby" value="doc_sach" checked>
+                                    <span>Đọc sách</span>
+                                </label>
+                                <label class="option-box">
+                                    <input type="checkbox" name="hobby" value="lap_trinh" checked>
+                                    <span>Lập trình</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Nút Thao Tác -->
+                        <div class="btn-row">
+                            <input type="submit" value="Gửi thông tin" class="btn btn-submit" />
+                            <input type="reset" value="Nhập lại" class="btn btn-reset" />
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Live Inspector Panel cho Phần 1 -->
+                <div class="inspector-panel">
+                    <span class="inspector-badge">LIVE INSPECTOR: PART 1</span>
+                    <h4 class="inspector-title">Dữ Liệu Đã Gửi (Payload)</h4>
+                    <p class="inspector-desc">Quan sát các tham số được serialize theo từng thuộc tính name khi bấm nút "Gửi thông tin".</p>
+                    
+                    <div id="inspector-part1" class="code-display">// Nhấn "Gửi thông tin" để kiểm tra FormData serialize...</div>
+
+                    <table class="kv-table" id="kv-table-part1">
+                        <thead>
+                            <tr>
+                                <th>Tham số (name)</th>
+                                <th>Giá trị (value)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="kv-name">yourname</td>
+                                <td>Nguyễn Tuấn Đạt</td>
+                            </tr>
+                            <tr>
+                                <td class="kv-name">email</td>
+                                <td>proyctk03@gmail.com</td>
+                            </tr>
+                            <tr>
+                                <td class="kv-name">hobby</td>
+                                <td>the_thao, doc_sach, lap_trinh</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: PHẦN 2 - FORM ĐĂNG KÝ HỌC VIÊN -->
+        <div id="tab-part2" class="tab-pane">
+            <div class="form-layout">
+                <!-- Form Phần 2 Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><span>🎓</span> Biểu mẫu Phần 2: Đăng Ký Học Viên</h3>
+                        <p class="card-desc">Thu thập thông tin cá nhân, định hướng khóa học, giới tính, hình thức học và ghi chú.</p>
+                    </div>
+
+                    <form id="form-part2" onsubmit="handlePart2Submit(event)" onreset="handleReset('Phần 2')">
+                        <!-- Họ và tên: fullname -->
+                        <div class="form-group">
+                            <label class="form-label" for="p2-fullname">Họ và tên <span class="required">*</span></label>
+                            <input 
+                                type="text" 
+                                id="p2-fullname" 
+                                name="fullname" 
+                                class="form-control" 
+                                placeholder="Nguyễn Văn An" 
+                                value="Lê Hải Đăng" 
+                                required 
+                            />
+                        </div>
+
+                        <!-- Email & Phone -->
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label class="form-label" for="p2-email">Email <span class="required">*</span></label>
+                                <input 
+                                    type="email" 
+                                    id="p2-email" 
+                                    name="email" 
+                                    class="form-control" 
+                                    value="haidang.dev@codegym.vn" 
+                                    required 
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="p2-phone">Số điện thoại <span class="required">*</span></label>
+                                <input 
+                                    type="tel" 
+                                    id="p2-phone" 
+                                    name="phone" 
+                                    class="form-control" 
+                                    value="0988123456" 
+                                    required 
+                                />
+                            </div>
+                        </div>
+
+                        <!-- Birthday & Gender -->
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label class="form-label" for="p2-birthday">Ngày sinh <span class="required">*</span></label>
+                                <input 
+                                    type="date" 
+                                    id="p2-birthday" 
+                                    name="birthday" 
+                                    class="form-control" 
+                                    value="2003-05-15" 
+                                    required 
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Giới tính (name="gender") <span class="required">*</span></label>
+                                <div class="option-flex">
+                                    <label class="option-box">
+                                        <input type="radio" name="gender" value="Nam" checked>
+                                        <span>Nam</span>
+                                    </label>
+                                    <label class="option-box">
+                                        <input type="radio" name="gender" value="Nữ">
+                                        <span>Nữ</span>
+                                    </label>
+                                    <label class="option-box">
+                                        <input type="radio" name="gender" value="Khác">
+                                        <span>Khác</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Địa chỉ: address -->
+                        <div class="form-group">
+                            <label class="form-label" for="p2-address">Địa chỉ thường trú</label>
+                            <textarea 
+                                id="p2-address" 
+                                name="address" 
+                                class="form-control" 
+                                rows="2" 
+                                placeholder="Địa chỉ liên hệ..."
+                            >Tòa nhà Handico, Phạm Hùng, Nam Từ Liêm, Hà Nội</textarea>
+                        </div>
+
+                        <!-- Course & Study Type -->
+                        <div class="grid-2">
+                            <div class="form-group">
+                                <label class="form-label" for="p2-course">Khóa học đăng ký <span class="required">*</span></label>
+                                <select id="p2-course" name="course" class="form-control" required>
+                                    <option value="HTML & CSS">HTML & CSS</option>
+                                    <option value="JavaScript" selected>JavaScript</option>
+                                    <option value="Java">Java</option>
+                                    <option value="Python">Python</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Hình thức học (name="study_type") <span class="required">*</span></label>
+                                <div class="option-flex">
+                                    <label class="option-box">
+                                        <input type="radio" name="study_type" value="Online" checked>
+                                        <span>Online</span>
+                                    </label>
+                                    <label class="option-box">
+                                        <input type="radio" name="study_type" value="Offline">
+                                        <span>Offline</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sở thích: hobby -->
+                        <div class="form-group">
+                            <label class="form-label">Sở thích cá nhân (name="hobby"):</label>
+                            <div class="option-grid">
+                                <label class="option-box">
+                                    <input type="checkbox" name="hobby" value="Lap_trinh" checked>
+                                    <span>Lập trình web</span>
+                                </label>
+                                <label class="option-box">
+                                    <input type="checkbox" name="hobby" value="Doc_sach" checked>
+                                    <span>Đọc sách công nghệ</span>
+                                </label>
+                                <label class="option-box">
+                                    <input type="checkbox" name="hobby" value="The_thao">
+                                    <span>Thể thao & Gym</span>
+                                </label>
+                                <label class="option-box">
+                                    <input type="checkbox" name="hobby" value="Am_nhac" checked>
+                                    <span>Âm nhạc</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Ghi chú: note -->
+                        <div class="form-group">
+                            <label class="form-label" for="p2-note">Ghi chú (name="note")</label>
+                            <textarea 
+                                id="p2-note" 
+                                name="note" 
+                                class="form-control" 
+                                rows="2" 
+                                placeholder="Nguyện vọng thêm..."
+                            >Mong muốn tham gia lớp buổi tối từ 19h00.</textarea>
+                        </div>
+
+                        <!-- Nút Thao Tác -->
+                        <div class="btn-row">
+                            <input type="submit" value="Đăng ký" class="btn btn-submit" />
+                            <input type="reset" value="Nhập lại" class="btn btn-reset" />
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Live Inspector Panel cho Phần 2 -->
+                <div class="inspector-panel">
+                    <span class="inspector-badge">LIVE INSPECTOR: PART 2</span>
+                    <h4 class="inspector-title">Payload Đăng Ký Học Viên</h4>
+                    <p class="inspector-desc">Dữ liệu được đóng gói gửi đi từ form đăng ký học viên.</p>
+                    
+                    <div id="inspector-part2" class="code-display">// Nhấn "Đăng ký" để kiểm tra cấu trúc dữ liệu gửi đi...</div>
+
+                    <table class="kv-table" id="kv-table-part2">
+                        <thead>
+                            <tr>
+                                <th>Trường (name)</th>
+                                <th>Giá trị (value)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="kv-name">fullname</td><td>Lê Hải Đăng</td></tr>
+                            <tr><td class="kv-name">email</td><td>haidang.dev@codegym.vn</td></tr>
+                            <tr><td class="kv-name">phone</td><td>0988123456</td></tr>
+                            <tr><td class="kv-name">birthday</td><td>2003-05-15</td></tr>
+                            <tr><td class="kv-name">gender</td><td>Nam</td></tr>
+                            <tr><td class="kv-name">course</td><td>JavaScript</td></tr>
+                            <tr><td class="kv-name">study_type</td><td>Online</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: BẢNG TRA CỨU QUY CHUẨN KỸ THUẬT -->
+        <div id="tab-specs" class="tab-pane">
+            <div class="doc-section">
+                <h3 class="doc-title"><span>📋</span> Đối Soát Yêu Cầu Thuộc Tính Giữa 2 Phần</h3>
+                <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 16px;">
+                    Bảng so sánh chi tiết các thành phần Form, thuộc tính name và kiểu input theo đúng yêu cầu đề bài.
+                </p>
+
+                <table class="spec-table">
+                    <thead>
+                        <tr>
+                            <th>Phần bài tập</th>
+                            <th>Tên trường dữ liệu</th>
+                            <th>Thuộc tính <span class="spec-code">name</span></th>
+                            <th>Kiểu Input HTML</th>
+                            <th>Mục đích sử dụng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="5" style="font-weight: 700; color: #2563eb;">Phần 1: Form Đơn Giản</td>
+                            <td>Họ và tên</td>
+                            <td><span class="spec-code">yourname</span></td>
+                            <td><code>&lt;input type="text"&gt;</code></td>
+                            <td>Nhập chuỗi văn bản họ tên</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td><span class="spec-code">email</span></td>
+                            <td><code>&lt;input type="email"&gt;</code></td>
+                            <td>Nhập và tự động validate địa chỉ email</td>
+                        </tr>
+                        <tr>
+                            <td>Sở thích</td>
+                            <td><span class="spec-code">hobby</span></td>
+                            <td><code>&lt;input type="checkbox"&gt;</code></td>
+                            <td>Chọn nhiều sở thích (cùng tên nhóm)</td>
+                        </tr>
+                        <tr>
+                            <td>Nút Gửi thông tin</td>
+                            <td><em>(N/A)</em></td>
+                            <td><code>&lt;input type="submit"&gt;</code></td>
+                            <td>Gửi dữ liệu biểu mẫu</td>
+                        </tr>
+                        <tr>
+                            <td>Nút Nhập lại</td>
+                            <td><em>(N/A)</em></td>
+                            <td><code>&lt;input type="reset"&gt;</code></td>
+                            <td>Khôi phục toàn bộ trường về mặc định</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="12" style="font-weight: 700; color: #0284c7;">Phần 2: Form Đăng Ký Học Viên</td>
+                            <td>Họ và tên</td>
+                            <td><span class="spec-code">fullname</span></td>
+                            <td><code>&lt;input type="text"&gt;</code></td>
+                            <td>Nhập họ tên đầy đủ học viên</td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td><span class="spec-code">email</span></td>
+                            <td><code>&lt;input type="email"&gt;</code></td>
+                            <td>Email liên hệ chính thức</td>
+                        </tr>
+                        <tr>
+                            <td>Số điện thoại</td>
+                            <td><span class="spec-code">phone</span></td>
+                            <td><code>&lt;input type="tel"&gt;</code></td>
+                            <td>Liên hệ tư vấn viên</td>
+                        </tr>
+                        <tr>
+                            <td>Ngày sinh</td>
+                            <td><span class="spec-code">birthday</span></td>
+                            <td><code>&lt;input type="date"&gt;</code></td>
+                            <td>Bộ chọn ngày sinh theo lịch</td>
+                        </tr>
+                        <tr>
+                            <td>Giới tính</td>
+                            <td><span class="spec-code">gender</span></td>
+                            <td><code>&lt;input type="radio"&gt;</code></td>
+                            <td>Chỉ chọn 1 trong các tùy chọn (Nam/Nữ/Khác)</td>
+                        </tr>
+                        <tr>
+                            <td>Địa chỉ</td>
+                            <td><span class="spec-code">address</span></td>
+                            <td><code>&lt;textarea&gt;</code></td>
+                            <td>Nhập văn bản nhiều dòng</td>
+                        </tr>
+                        <tr>
+                            <td>Khóa học</td>
+                            <td><span class="spec-code">course</span></td>
+                            <td><code>&lt;select&gt; &lt;option&gt;</code></td>
+                            <td>Menu đổ xuống chọn 1 khóa học</td>
+                        </tr>
+                        <tr>
+                            <td>Hình thức học</td>
+                            <td><span class="spec-code">study_type</span></td>
+                            <td><code>&lt;input type="radio"&gt;</code></td>
+                            <td>Chọn Online hoặc Offline</td>
+                        </tr>
+                        <tr>
+                            <td>Sở thích</td>
+                            <td><span class="spec-code">hobby</span></td>
+                            <td><code>&lt;input type="checkbox"&gt;</code></td>
+                            <td>Chọn nhiều sở thích cá nhân</td>
+                        </tr>
+                        <tr>
+                            <td>Ghi chú</td>
+                            <td><span class="spec-code">note</span></td>
+                            <td><code>&lt;textarea&gt;</code></td>
+                            <td>Nguyện vọng học tập bổ sung</td>
+                        </tr>
+                        <tr>
+                            <td>Nút Đăng ký</td>
+                            <td><em>(N/A)</em></td>
+                            <td><code>&lt;input type="submit"&gt;</code></td>
+                            <td>Submit đăng ký học viên</td>
+                        </tr>
+                        <tr>
+                            <td>Nút Nhập lại</td>
+                            <td><em>(N/A)</em></td>
+                            <td><code>&lt;input type="reset"&gt;</code></td>
+                            <td>Làm mới form</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast-msg">
+        <span id="toast-icon">✅</span>
+        <span id="toast-text">Thông báo hành động</span>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 CodeGym FullStack Track &middot; Bài thực hành & Bài tập HTML Forms &middot; Sinh viên: Nguyễn Tuấn Đạt</p>
+    </footer>
+
+    <!-- Interactive JavaScript Logic -->
+    <script>
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+
+            if (tabId === 'part1') {
+                document.querySelectorAll('.tab-btn')[0].classList.add('active');
+                document.getElementById('tab-part1').classList.add('active');
+            } else if (tabId === 'part2') {
+                document.querySelectorAll('.tab-btn')[1].classList.add('active');
+                document.getElementById('tab-part2').classList.add('active');
+            } else if (tabId === 'specs') {
+                document.querySelectorAll('.tab-btn')[2].classList.add('active');
+                document.getElementById('tab-specs').classList.add('active');
+            }
+        }
+
+        function showToast(message, icon = '✅') {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-icon').textContent = icon;
+            document.getElementById('toast-text').textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        function handlePart1Submit(e) {
+            e.preventDefault();
+            const form = document.getElementById('form-part1');
+            const formData = new FormData(form);
+            const dataObj = {};
+
+            formData.forEach((value, key) => {
+                if (dataObj[key]) {
+                    if (Array.isArray(dataObj[key])) {
+                        dataObj[key].push(value);
+                    } else {
+                        dataObj[key] = [dataObj[key], value];
+                    }
+                } else {
+                    dataObj[key] = value;
+                }
+            });
+
+            // Update Inspector
+            const codeEl = document.getElementById('inspector-part1');
+            codeEl.textContent = JSON.stringify(dataObj, null, 2);
+
+            // Update Table
+            const tbody = document.querySelector('#kv-table-part1 tbody');
+            tbody.innerHTML = '';
+            for (const [k, v] of Object.entries(dataObj)) {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td class="kv-name">${k}</td><td>${Array.isArray(v) ? v.join(', ') : v}</td>`;
+                tbody.appendChild(tr);
+            }
+
+            showToast('Gửi thông tin Phần 1 thành công!');
+        }
+
+        function handlePart2Submit(e) {
+            e.preventDefault();
+            const form = document.getElementById('form-part2');
+            const formData = new FormData(form);
+            const dataObj = {};
+
+            formData.forEach((value, key) => {
+                if (dataObj[key]) {
+                    if (Array.isArray(dataObj[key])) {
+                        dataObj[key].push(value);
+                    } else {
+                        dataObj[key] = [dataObj[key], value];
+                    }
+                } else {
+                    dataObj[key] = value;
+                }
+            });
+
+            // Update Inspector
+            const codeEl = document.getElementById('inspector-part2');
+            codeEl.textContent = JSON.stringify(dataObj, null, 2);
+
+            // Update Table
+            const tbody = document.querySelector('#kv-table-part2 tbody');
+            tbody.innerHTML = '';
+            for (const [k, v] of Object.entries(dataObj)) {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td class="kv-name">${k}</td><td>${Array.isArray(v) ? v.join(', ') : v}</td>`;
+                tbody.appendChild(tr);
+            }
+
+            showToast('Đăng ký học viên Phần 2 thành công!');
+        }
+
+        function handleReset(partName) {
+            setTimeout(() => {
+                showToast(`Đã làm mới dữ liệu biểu mẫu (${partName}) về mặc định!`, '🔄');
+            }, 50);
+        }
+
+        // Initialize Inspector on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const form1 = document.getElementById('form-part1');
+            const form2 = document.getElementById('form-part2');
+            if (form1) {
+                const formData1 = new FormData(form1);
+                const obj1 = {};
+                formData1.forEach((v, k) => {
+                    obj1[k] = obj1[k] ? (Array.isArray(obj1[k]) ? [...obj1[k], v] : [obj1[k], v]) : v;
+                });
+                document.getElementById('inspector-part1').textContent = JSON.stringify(obj1, null, 2);
+            }
+            if (form2) {
+                const formData2 = new FormData(form2);
+                const obj2 = {};
+                formData2.forEach((v, k) => {
+                    obj2[k] = obj2[k] ? (Array.isArray(obj2[k]) ? [...obj2[k], v] : [obj2[k], v]) : v;
+                });
+                document.getElementById('inspector-part2').textContent = JSON.stringify(obj2, null, 2);
+            }
+        });
+    </script>
+</body>
+</html>

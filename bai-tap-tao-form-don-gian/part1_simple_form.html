@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phần 1 - Form Đơn Giản</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --primary-light: #eff6ff;
+            --secondary: #64748b;
+            --secondary-hover: #475569;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --border-focus: #3b82f6;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+            --shadow-btn: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 24px 16px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 520px;
+        }
+
+        .header-card {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            margin-bottom: 12px;
+            border: 1px solid #bfdbfe;
+        }
+
+        .title {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.3;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 6px;
+        }
+
+        .form-card {
+            background: var(--card-bg);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 32px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .form-label .required {
+            color: #ef4444;
+            margin-left: 2px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 15px;
+            color: var(--text-main);
+            background-color: #ffffff;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-md);
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--border-focus);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+        .form-control::placeholder {
+            color: #94a3b8;
+        }
+
+        .checkbox-group-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 10px 14px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .checkbox-label:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 14px;
+            margin-top: 28px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: center;
+            border: none;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-submit {
+            background-color: var(--primary);
+            color: #ffffff;
+            box-shadow: var(--shadow-btn);
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-reset {
+            background-color: #f1f5f9;
+            color: var(--secondary);
+            border: 1px solid #cbd5e1;
+        }
+
+        .btn-reset:hover {
+            background-color: #e2e8f0;
+            color: var(--secondary-hover);
+        }
+
+        .info-footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .nav-links {
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            margin: 0 8px;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header-card">
+            <span class="badge">Phần 1: Yêu Cầu Đề Bài</span>
+            <h1 class="title">Form Đơn Giản Trong HTML</h1>
+            <p class="subtitle">Luyện tập các thẻ input, thuộc tính name, checkbox và submit/reset form</p>
+        </header>
+
+        <main class="form-card">
+            <!-- Form theo đúng quy chuẩn đề bài: action, method GET/POST -->
+            <form action="" method="GET">
+                <!-- 1. Họ và tên: name="yourname" -->
+                <div class="form-group">
+                    <label class="form-label" for="yourname">Họ và tên <span class="required">*</span></label>
+                    <input 
+                        type="text" 
+                        id="yourname" 
+                        name="yourname" 
+                        class="form-control" 
+                        placeholder="Nhập họ và tên của bạn..." 
+                        required 
+                    />
+                </div>
+
+                <!-- 2. Email: name="email" -->
+                <div class="form-group">
+                    <label class="form-label" for="email">Địa chỉ Email <span class="required">*</span></label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-control" 
+                        placeholder="vidu@domain.com" 
+                        required 
+                    />
+                </div>
+
+                <!-- 3. Sở thích: Checkboxes cùng name="hobby" -->
+                <div class="form-group">
+                    <div class="checkbox-group-title">Sở thích cá nhân:</div>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="hobby" value="the_thao">
+                            <span>Thể thao</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="hobby" value="am_nhac">
+                            <span>Âm nhạc</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="hobby" value="doc_sach">
+                            <span>Đọc sách</span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="hobby" value="lap_trinh">
+                            <span>Lập trình</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 4 & 5. Nút Gửi thông tin (Submit) & Nút Nhập lại (Reset) -->
+                <div class="btn-row">
+                    <input type="submit" value="Gửi thông tin" class="btn btn-submit" />
+                    <input type="reset" value="Nhập lại" class="btn btn-reset" />
+                </div>
+            </form>
+        </main>
+
+        <div class="info-footer">
+            <p>Bài tập HTML Forms &middot; CodeGym FullStack &middot; 2026</p>
+            <div class="nav-links">
+                <a href="part2_student_registration_form.html">&rarr; Xem Phần 2: Form đăng ký học viên</a>
+                <a href="index.html">&rarr; Cổng tổng hợp 2 Form (Interactive Hub)</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
