@@ -1,0 +1,393 @@
+/* ==========================================================================
+   [Thực hành] Danh sách trong CSS - style.css
+   Luyện tập các thuộc tính CSS định kiểu cho danh sách HTML (W3C Standard)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CẤU HÌNH GIAO DIỆN CHUNG & TYPOGRAPHY
+   -------------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --primary-light: #eef2ff;
+    --secondary: #0ea5e9;
+    --accent: #10b981;
+    --bg-page: #f8fafc;
+    --bg-card: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding: 32px 16px;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+/* Header trang web */
+.main-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 36px auto;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background-color: var(--primary-light);
+    color: var(--primary);
+    border: 1px solid #c7d2fe;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.main-header h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.025em;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+}
+
+/* Card chứa từng mục bài thực hành */
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 24px 28px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.step-num {
+    background-color: #f1f5f9;
+    color: #475569;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.card h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.desc code {
+    font-family: 'JetBrains Mono', monospace;
+    background-color: #f1f5f9;
+    color: var(--primary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   MỤC 2: THAY ĐỔI KIỂU ĐÁNH DẤU DANH SÁCH (list-style-type: square)
+   -------------------------------------------------------------------------- */
+.list-subjects {
+    list-style-type: square;
+    padding-left: 28px;
+}
+
+.list-subjects li {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 8px;
+    padding-left: 4px;
+}
+
+/* --------------------------------------------------------------------------
+   MỤC 3: DANH SÁCH CÓ THỨ TỰ (list-style-type: upper-roman)
+   -------------------------------------------------------------------------- */
+.list-steps {
+    list-style-type: upper-roman;
+    padding-left: 32px;
+}
+
+.list-steps li {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 8px;
+    padding-left: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   MỤC 4: SỬ DỤNG HÌNH ẢNH LÀM DẤU ĐÁNH DẤU (list-style-image)
+   -------------------------------------------------------------------------- */
+.list-tools {
+    list-style-image: url('bullet.png');
+    padding-left: 32px;
+}
+
+.list-tools li {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 10px;
+    padding-left: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   MỤC 5: THAY ĐỔI VỊ TRÍ DẤU ĐÁNH DẤU (list-style-position: outside / inside)
+   -------------------------------------------------------------------------- */
+.comparison-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 18px;
+}
+
+.pos-box {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.pos-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #0f172a;
+    margin-bottom: 4px;
+}
+
+.pos-sub {
+    font-size: 0.85rem;
+    color: #64748b;
+    margin-bottom: 12px;
+}
+
+/* Danh sách 1: outside (mặc định) */
+.list-outside {
+    list-style-position: outside;
+    list-style-type: disc;
+    background-color: #eef2ff;
+    border: 1.5px dashed #6366f1;
+    border-radius: 8px;
+    padding: 16px 16px 16px 36px;
+}
+
+.list-outside li {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    color: #3730a3;
+    font-weight: 500;
+}
+
+/* Danh sách 2: inside */
+.list-inside {
+    list-style-position: inside;
+    list-style-type: disc;
+    background-color: #fdf2f8;
+    border: 1.5px dashed #ec4899;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.list-inside li {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    color: #9d174d;
+    font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   MỤC 6: SỬ DỤNG THUỘC TÍNH RÚT GỌN (list-style shorthand)
+   -------------------------------------------------------------------------- */
+.list-shorthand {
+    /* Thuộc tính rút gọn kết hợp: type, position, image */
+    list-style: square inside url('bullet.png');
+    background-color: #f0fdf4;
+    border: 1.5px solid #86efac;
+    border-radius: 10px;
+    padding: 18px 24px;
+}
+
+.list-shorthand li {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #166534;
+    margin-bottom: 10px;
+    padding: 6px 10px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    box-shadow: var(--shadow-sm);
+}
+
+/* --------------------------------------------------------------------------
+   MỤC 7: TẠO KIỂU DANH SÁCH VỚI MÀU SẮC & KHOẢNG CÁCH
+   -------------------------------------------------------------------------- */
+.list-languages {
+    list-style-type: circle;
+    background-color: #0f172a; /* Màu nền cho toàn bộ danh sách */
+    padding: 20px 28px;        /* Khoảng cách bên trong danh sách (padding) */
+    border-radius: 12px;
+}
+
+.list-languages li {
+    color: #38bdf8;            /* Thay đổi màu chữ của các mục */
+    margin-bottom: 10px;       /* Tạo khoảng cách giữa các mục (margin) */
+    padding: 8px 14px;         /* Khoảng đệm bên trong từng mục */
+    background-color: #1e293b;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.list-languages li:last-child {
+    margin-bottom: 0;
+}
+
+.list-languages li:hover {
+    background-color: #334155;
+    color: #7dd3fc;
+}
+
+/* --------------------------------------------------------------------------
+   MỤC 8: BÀI TẬP TỔNG HỢP: LỘ TRÌNH HỌC LẬP TRÌNH WEB
+   -------------------------------------------------------------------------- */
+.highlight-card {
+    border: 1.5px solid #c7d2fe;
+    background: linear-gradient(180deg, #ffffff 0%, #faf5ff 100%);
+}
+
+.step-highlight {
+    background: #4f46e5;
+    color: #ffffff;
+}
+
+.list-roadmap {
+    /* Thuộc tính rút gọn list-style */
+    list-style: square inside;
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); /* Màu nền danh sách */
+    padding: 26px 30px; /* Padding danh sách */
+    border-radius: 14px;
+    box-shadow: 0 10px 25px -5px rgba(49, 46, 129, 0.25);
+}
+
+.list-roadmap li {
+    color: #f8fafc; /* Màu chữ */
+    margin-bottom: 12px; /* Margin giữa các mục */
+    padding: 12px 18px; /* Padding từng mục */
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(8px);
+    border-left: 4px solid #38bdf8;
+    border-radius: 8px;
+    font-size: 0.975rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: all 0.25s ease;
+}
+
+.list-roadmap li:last-child {
+    margin-bottom: 0;
+}
+
+.list-roadmap li:hover {
+    transform: translateX(8px);
+    background: rgba(255, 255, 255, 0.16);
+    border-left-color: #a855f7;
+    color: #ffffff;
+}
+
+.tech-badge {
+    background-color: #38bdf8;
+    color: #0f172a;
+    font-size: 0.725rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    flex-shrink: 0;
+}
+
+/* Footer */
+.main-footer {
+    text-align: center;
+    padding: 32px 0 16px 0;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: 24px;
+}
+
+.main-footer a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.main-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .main-header h1 {
+        font-size: 1.75rem;
+    }
+    .card {
+        padding: 18px 20px;
+    }
+    .list-roadmap li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+}

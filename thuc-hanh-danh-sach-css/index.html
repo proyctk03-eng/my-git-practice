@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Thực hành] Danh sách trong CSS</title>
+    <!-- Liên kết file CSS theo yêu cầu mục 1 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="badge">CodeGym Web Development &bull; CSS Lists</div>
+        <h1>[Thực hành] Danh sách trong CSS</h1>
+        <p class="subtitle">Luyện tập toàn diện các thuộc tính định kiểu cho danh sách HTML: list-style-type, list-style-image, list-style-position, list-style shorthand, màu sắc và khoảng cách.</p>
+    </header>
+
+    <main class="container">
+        <!-- Mục 2: Thay đổi kiểu đánh dấu danh sách không thứ tự (square) -->
+        <section class="card" id="part-2">
+            <div class="card-header">
+                <span class="step-num">Mục 2</span>
+                <h2>Danh sách không thứ tự (list-style-type: square)</h2>
+            </div>
+            <p class="desc">Danh sách các môn học sử dụng thẻ <code>&lt;ul&gt;</code> với kiểu đánh dấu hình vuông <code>square</code>:</p>
+            <ul class="list-subjects">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript</li>
+                <li>Git</li>
+            </ul>
+        </section>
+
+        <!-- Mục 3: Thay đổi kiểu đánh dấu danh sách có thứ tự (upper-roman) -->
+        <section class="card" id="part-3">
+            <div class="card-header">
+                <span class="step-num">Mục 3</span>
+                <h2>Danh sách có thứ tự (list-style-type: upper-roman)</h2>
+            </div>
+            <p class="desc">Danh sách các bước học sử dụng thẻ <code>&lt;ol&gt;</code> với kiểu đánh số La Mã viết hoa <code>upper-roman</code>:</p>
+            <ol class="list-steps">
+                <li>Học HTML</li>
+                <li>Học CSS</li>
+                <li>Học JavaScript</li>
+                <li>Học Git</li>
+            </ol>
+        </section>
+
+        <!-- Mục 4: Sử dụng hình ảnh làm dấu đánh dấu (list-style-image) -->
+        <section class="card" id="part-4">
+            <div class="card-header">
+                <span class="step-num">Mục 4</span>
+                <h2>Sử dụng hình ảnh làm dấu đánh dấu (list-style-image)</h2>
+            </div>
+            <p class="desc">Danh sách các công cụ học tập sử dụng hình ảnh biểu tượng tùy chỉnh qua <code>url('bullet.png')</code>:</p>
+            <ul class="list-tools">
+                <li>Visual Studio Code</li>
+                <li>Google Chrome</li>
+                <li>GitHub</li>
+                <li>Git</li>
+            </ul>
+        </section>
+
+        <!-- Mục 5: Thay đổi vị trí dấu đánh dấu (outside vs inside) -->
+        <section class="card" id="part-5">
+            <div class="card-header">
+                <span class="step-num">Mục 5</span>
+                <h2>Thay đổi vị trí dấu đánh dấu (list-style-position)</h2>
+            </div>
+            <p class="desc">So sánh trực quan hai danh sách có đường viền để thấy rõ dấu đánh dấu nằm ngoài (<code>outside</code>) hay nằm trong (<code>inside</code>) hộp nội dung:</p>
+            <div class="comparison-grid">
+                <div class="pos-box">
+                    <div class="pos-title">1. list-style-position: outside (Mặc định)</div>
+                    <p class="pos-sub">Dấu đánh dấu nằm bên ngoài lề nội dung của thẻ &lt;li&gt;:</p>
+                    <ul class="list-outside">
+                        <li>Visual Studio Code - Trình soạn thảo mã nguồn mạnh mẽ</li>
+                        <li>Google Chrome - Trình duyệt web và DevTools kiểm thử</li>
+                        <li>GitHub - Nền tảng lưu trữ và cộng tác mã nguồn</li>
+                        <li>Git - Hệ thống quản lý phiên bản phân tán</li>
+                    </ul>
+                </div>
+                <div class="pos-box">
+                    <div class="pos-title">2. list-style-position: inside</div>
+                    <p class="pos-sub">Dấu đánh dấu nằm bên trong nội dung, cùng dòng với văn bản:</p>
+                    <ul class="list-inside">
+                        <li>Visual Studio Code - Trình soạn thảo mã nguồn mạnh mẽ</li>
+                        <li>Google Chrome - Trình duyệt web và DevTools kiểm thử</li>
+                        <li>GitHub - Nền tảng lưu trữ và cộng tác mã nguồn</li>
+                        <li>Git - Hệ thống quản lý phiên bản phân tán</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mục 6: Sử dụng thuộc tính rút gọn list-style -->
+        <section class="card" id="part-6">
+            <div class="card-header">
+                <span class="step-num">Mục 6</span>
+                <h2>Sử dụng thuộc tính rút gọn (list-style shorthand)</h2>
+            </div>
+            <p class="desc">Thiết lập đồng thời kiểu đánh dấu (<code>square</code>), vị trí (<code>inside</code>) và hình ảnh (<code>url('bullet.png')</code>) trong một dòng CSS:</p>
+            <ul class="list-shorthand">
+                <li>Kiến thức cấu trúc HTML5 ngữ nghĩa và chuẩn SEO</li>
+                <li>Kỹ thuật định kiểu CSS3, Flexbox và Grid Layout hiện đại</li>
+                <li>Lập trình xử lý DOM và sự kiện tương tác trong JavaScript</li>
+                <li>Quy trình làm việc Git Flow và quản lý nhánh chuyên nghiệp</li>
+            </ul>
+        </section>
+
+        <!-- Mục 7: Tạo kiểu danh sách với màu sắc & khoảng cách -->
+        <section class="card" id="part-7">
+            <div class="card-header">
+                <span class="step-num">Mục 7</span>
+                <h2>Tạo kiểu danh sách với màu sắc và khoảng cách</h2>
+            </div>
+            <p class="desc">Danh sách các ngôn ngữ lập trình với màu nền (<code>background-color</code>), màu chữ (<code>color</code>), khoảng đệm (<code>padding</code>) và lề (<code>margin</code>):</p>
+            <ul class="list-languages">
+                <li>HTML - Ngôn ngữ đánh dấu siêu văn bản</li>
+                <li>CSS - Ngôn ngữ định kiểu tầng</li>
+                <li>JavaScript - Ngôn ngữ lập trình tương tác web</li>
+                <li>Python - Ngôn ngữ lập trình đa năng và trí tuệ nhân tạo</li>
+            </ul>
+        </section>
+
+        <!-- Mục 8: Bài tập tổng hợp: Lộ trình học lập trình Web -->
+        <section class="card highlight-card" id="part-8">
+            <div class="card-header">
+                <span class="step-num step-highlight">Mục 8 &bull; Tổng hợp</span>
+                <h2>Bài tập tổng hợp: Lộ trình học lập trình Web</h2>
+            </div>
+            <p class="desc">Kết hợp toàn diện các kỹ thuật: kiểu đánh dấu, màu nền hiện đại, màu chữ tương phản cao, khoảng cách padding/margin tối ưu, vị trí inside và hiệu ứng hover:</p>
+            <ul class="list-roadmap">
+                <li>
+                    <span class="tech-badge">Chặng 1</span>
+                    <strong>HTML</strong> - Xây dựng cấu trúc trang web vững chắc, chuẩn ngữ nghĩa W3C.
+                </li>
+                <li>
+                    <span class="tech-badge">Chặng 2</span>
+                    <strong>CSS</strong> - Thiết kế giao diện thẩm mỹ, màu sắc, bố cục thích ứng (Responsive).
+                </li>
+                <li>
+                    <span class="tech-badge">Chặng 3</span>
+                    <strong>JavaScript</strong> - Xử lý logic nghiệp vụ, tương tác người dùng và kết nối API.
+                </li>
+                <li>
+                    <span class="tech-badge">Chặng 4</span>
+                    <strong>Git</strong> - Quản lý phiên bản mã nguồn cục bộ, commit và rẽ nhánh an toàn.
+                </li>
+                <li>
+                    <span class="tech-badge">Chặng 5</span>
+                    <strong>GitHub</strong> - Lưu trữ đám mây, làm việc nhóm qua Pull Request và CI/CD.
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 [Thực hành] Danh sách trong CSS - CodeGym Lab. Hoàn thành theo chuẩn W3C.</p>
+        <p>
+            <a href="https://github.com/proyctk03-eng/thuc-hanh-danh-sach-css" target="_blank" rel="noopener">
+                Repository GitHub: proyctk03-eng/thuc-hanh-danh-sach-css
+            </a>
+        </p>
+    </footer>
+</body>
+</html>
