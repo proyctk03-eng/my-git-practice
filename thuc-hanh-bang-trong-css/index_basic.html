@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Thực hành] Bảng trong CSS - CodeGym</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+
+        h2 {
+            color: #333;
+            margin-top: 30px;
+        }
+
+        /* 1. Đường viền của bảng (viền kép mặc định) */
+        .table-border-default, 
+        .table-border-default th, 
+        .table-border-default td {
+            border: 1px solid black;
+        }
+
+        /* 2. Bỏ các đường viền kép của bảng (border-collapse: collapse) */
+        .table-collapse {
+            border-collapse: collapse;
+        }
+        .table-collapse, 
+        .table-collapse th, 
+        .table-collapse td {
+            border: 1px solid black;
+        }
+
+        /* 3. Chiều rộng và chiều cao của bảng */
+        .table-dimensions {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table-dimensions, 
+        .table-dimensions th, 
+        .table-dimensions td {
+            border: 1px solid black;
+        }
+        .table-dimensions th {
+            height: 50px;
+        }
+
+        /* 4. Căn chỉnh theo chiều ngang (text-align: left) */
+        .table-align-h {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table-align-h, 
+        .table-align-h th, 
+        .table-align-h td {
+            border: 1px solid black;
+        }
+        .table-align-h th {
+            text-align: left;
+        }
+
+        /* 5. Căn chỉnh theo chiều dọc (vertical-align: bottom) */
+        .table-align-v {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table-align-v, 
+        .table-align-v th, 
+        .table-align-v td {
+            border: 1px solid black;
+        }
+        .table-align-v td {
+            height: 80px;
+            vertical-align: bottom;
+        }
+
+        /* 6. Padding trong bảng */
+        .table-padding {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table-padding, 
+        .table-padding th, 
+        .table-padding td {
+            border: 1px solid black;
+        }
+        .table-padding th, 
+        .table-padding td {
+            padding: 15px;
+        }
+
+        /* 7. Màu sắc trong bảng */
+        .table-colors {
+            width: 100%;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        .table-colors th, 
+        .table-colors td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+        .table-colors th {
+            background-color: #333;
+            color: white;
+        }
+        .table-colors td {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>[Thực hành] Bảng trong CSS</h1>
+
+    <!-- 1. Đường viền của bảng -->
+    <h2>1. Đường viền của bảng (border: 1px solid black)</h2>
+    <table class="table-border-default">
+        <tr>
+            <th>Họ tên</th>
+            <th>Tuổi</th>
+            <th>Lớp</th>
+        </tr>
+        <tr>
+            <td>Nguyễn Văn A</td>
+            <td>20</td>
+            <td>Web</td>
+        </tr>
+        <tr>
+            <td>Trần Thị B</td>
+            <td>21</td>
+            <td>Web</td>
+        </tr>
+    </table>
+
+    <!-- 2. Bỏ các đường viền kép của bảng -->
+    <h2>2. Bỏ các đường viền của bảng (border-collapse: collapse)</h2>
+    <table class="table-collapse">
+        <tr>
+            <th>Họ tên</th>
+            <th>Tuổi</th>
+            <th>Lớp</th>
+        </tr>
+        <tr>
+            <td>Nguyễn Văn A</td>
+            <td>20</td>
+            <td>Web</td>
+        </tr>
+        <tr>
+            <td>Trần Thị B</td>
+            <td>21</td>
+            <td>Web</td>
+        </tr>
+    </table>
+
+    <!-- 3. Chiều rộng và chiều cao của bảng -->
+    <h2>3. Chiều rộng và chiều cao (width: 100%, th height: 50px)</h2>
+    <table class="table-dimensions">
+        <tr>
+            <th>Họ tên</th>
+            <th>Tuổi</th>
+            <th>Lớp</th>
+        </tr>
+        <tr>
+            <td>Nguyễn Văn A</td>
+            <td>20</td>
+            <td>Web</td>
+        </tr>
+        <tr>
+            <td>Trần Thị B</td>
+            <td>21</td>
+            <td>Web</td>
+        </tr>
+    </table>
+
+    <!-- 4. Căn chỉnh theo chiều ngang -->
+    <h2>4. Căn chỉnh theo chiều ngang (th text-align: left)</h2>
+    <table class="table-align-h">
+        <tr>
+            <th>Họ tên</th>
+            <th>Tuổi</th>
+            <th>Lớp</th>
+        </tr>
+        <tr>
+            <td>Nguyễn Văn A</td>
+            <td>20</td>
+            <td>Web</td>
+        </tr>
+        <tr>
+            <td>Trần Thị B</td>
+            <td>21</td>
+            <td>Web</td>
+        </tr>
+    </table>
+
+    <!-- 5. Căn chỉnh theo chiều dọc -->
+    <h2>5. Căn chỉnh theo chiều dọc (td vertical-align: bottom, height: 80px)</h2>
+    <table class="table-align-v">
+        <tr>
+            <th>Họ tên</th>
+            <th>Tuổi</th>
+            <th>Lớp</th>
+        </tr>
+        <tr>
+            <td>Nguyễn Văn A</td>
+            <td>20</td>
+            <td>Web</td>
+        </tr>
+        <tr>
+            <td>Trần Thị B</td>
+            <td>21</td>
+            <td>Web</td>
+        </tr>
+    </table>
+
+    <!-- 6. Padding trong bảng -->
+    <h2>6. Padding trong bảng (th, td padding: 15px)</h2>
+    <table class="table-padding">
+        <tr>
+            <th>Họ tên</th>
+            <th>Tuổi</th>
+            <th>Lớp</th>
+        </tr>
+        <tr>
+            <td>Nguyễn Văn A</td>
+            <td>20</td>
+            <td>Web</td>
+        </tr>
+        <tr>
+            <td>Trần Thị B</td>
+            <td>21</td>
+            <td>Web</td>
+        </tr>
+    </table>
+
+    <!-- 7. Màu sắc trong bảng -->
+    <h2>7. Màu sắc trong bảng (th dark background, td light background)</h2>
+    <table class="table-colors">
+        <tr>
+            <th>Họ tên</th>
+            <th>Tuổi</th>
+            <th>Lớp</th>
+        </tr>
+        <tr>
+            <td>Nguyễn Văn A</td>
+            <td>20</td>
+            <td>Web</td>
+        </tr>
+        <tr>
+            <td>Trần Thị B</td>
+            <td>21</td>
+            <td>Web</td>
+        </tr>
+    </table>
+</body>
+</html>

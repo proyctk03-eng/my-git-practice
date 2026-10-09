@@ -1,0 +1,382 @@
+/* ==========================================================================
+   [Thực hành] Bảng trong CSS - style.css
+   Luyện tập định kiểu bảng với CSS3 theo chuẩn W3C
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --primary-light: #eef2ff;
+    --secondary: #0ea5e9;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --bg-page: #f8fafc;
+    --bg-card: #ffffff;
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.04);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    line-height: 1.6;
+    padding: 32px 16px;
+}
+
+.container {
+    max-width: 980px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* Header */
+.main-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 36px auto;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background-color: var(--primary-light);
+    color: var(--primary);
+    border: 1px solid #c7d2fe;
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.main-header h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: -0.025em;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+}
+
+/* Card */
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 24px 28px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.step-num {
+    background-color: #f1f5f9;
+    color: #475569;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.card h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+}
+
+.desc code {
+    font-family: 'JetBrains Mono', monospace;
+    background-color: #f1f5f9;
+    color: var(--primary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.table-container {
+    overflow-x: auto;
+    width: 100%;
+}
+
+/* ==========================================================================
+   1. ĐƯỜNG VIỀN CỦA BẢNG (border: 1px solid black trên table, th, td)
+   ========================================================================== */
+.table-border-default {
+    border: 1px solid black;
+    /* Viền kép mặc định do chưa có border-collapse */
+}
+
+.table-border-default th,
+.table-border-default td {
+    border: 1px solid black;
+    padding: 8px 14px;
+}
+
+/* ==========================================================================
+   2. BỎ ĐƯỜNG VIỀN KÉP CỦA BẢNG (border-collapse: collapse)
+   ========================================================================== */
+.table-collapse {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+.table-collapse th,
+.table-collapse td {
+    border: 1px solid black;
+    padding: 8px 14px;
+}
+
+/* ==========================================================================
+   3. CHIỀU RỘNG VÀ CHIỀU CAO CỦA BẢNG (width: 100%, th height: 50px)
+   ========================================================================== */
+.table-dimensions {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+.table-dimensions th,
+.table-dimensions td {
+    border: 1px solid black;
+    padding: 8px 14px;
+}
+
+.table-dimensions th {
+    height: 50px;
+}
+
+/* ==========================================================================
+   4. CĂN CHỈNH THEO CHIỀU NGANG (th text-align: left)
+   ========================================================================== */
+.table-align-h {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+.table-align-h th,
+.table-align-h td {
+    border: 1px solid black;
+    padding: 8px 14px;
+}
+
+.table-align-h th {
+    text-align: left;
+}
+
+/* ==========================================================================
+   5. CĂN CHỈNH THEO CHIỀU DỌC (td vertical-align: bottom, height: 80px)
+   ========================================================================== */
+.table-align-v {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+.table-align-v th,
+.table-align-v td {
+    border: 1px solid black;
+    padding: 8px 14px;
+}
+
+.table-align-v td {
+    height: 80px;
+    vertical-align: bottom;
+}
+
+/* ==========================================================================
+   6. PADDING TRONG BẢNG (th, td padding: 15px)
+   ========================================================================== */
+.table-padding {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+.table-padding th,
+.table-padding td {
+    border: 1px solid black;
+    padding: 15px;
+}
+
+/* ==========================================================================
+   7. MÀU SẮC TRONG BẢNG (th dark, td light)
+   ========================================================================== */
+.table-colors {
+    width: 100%;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.table-colors th,
+.table-colors td {
+    border: 1px solid black;
+    padding: 12px 16px;
+}
+
+.table-colors th {
+    background-color: #333;
+    color: white;
+}
+
+.table-colors td {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+/* ==========================================================================
+   8. BÀI TẬP TỔNG HỢP: BẢNG HỌC VIÊN CHUẨN UI/UX HIỆN ĐẠI
+   ========================================================================== */
+.highlight-card {
+    border: 1.5px solid #c7d2fe;
+    background: linear-gradient(180deg, #ffffff 0%, #faf5ff 100%);
+}
+
+.step-highlight {
+    background: #4f46e5;
+    color: #ffffff;
+}
+
+.table-pro {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.table-pro thead th {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: #ffffff;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.825rem;
+    letter-spacing: 0.05em;
+    padding: 14px 18px;
+    height: 52px;
+    text-align: left;
+    border-bottom: 2px solid #475569;
+}
+
+.table-pro tbody td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border-color);
+    color: #1e293b;
+    vertical-align: middle;
+    transition: background-color 0.15s ease;
+}
+
+/* Zebra striping (kẻ sọc xen kẽ) */
+.table-pro tbody tr:nth-child(even) td {
+    background-color: #f8fafc;
+}
+
+/* Hover effect */
+.table-pro tbody tr:hover td {
+    background-color: #eef2ff;
+}
+
+.code-font {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    color: #4f46e5;
+}
+
+.badge-status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 0.775rem;
+    font-weight: 700;
+}
+
+.badge-active {
+    background-color: #e0f2fe;
+    color: #0369a1;
+}
+
+.badge-completed {
+    background-color: #dcfce7;
+    color: #15803d;
+}
+
+.table-footer-note {
+    background-color: #f8fafc;
+    color: #64748b;
+    font-size: 0.85rem;
+    padding: 12px 18px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Footer */
+.main-footer {
+    text-align: center;
+    padding: 32px 0 16px 0;
+    color: var(--text-muted);
+    font-size: 0.875rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: 24px;
+}
+
+.main-footer a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.main-footer a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+    .main-header h1 {
+        font-size: 1.75rem;
+    }
+    .card {
+        padding: 18px 20px;
+    }
+    .table-pro thead th,
+    .table-pro tbody td {
+        padding: 10px 12px;
+        font-size: 0.875rem;
+    }
+}

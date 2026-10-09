@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Thực hành] Bảng trong CSS - CodeGym Lab</title>
+    <!-- Liên kết file CSS riêng biệt theo chuẩn thiết kế web -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="badge">CodeGym Web Development &bull; CSS Tables</div>
+        <h1>[Thực hành] Bảng trong CSS</h1>
+        <p class="subtitle">Khám phá và luyện tập toàn diện các kỹ thuật định kiểu bảng: border, border-collapse, width/height, text-align, vertical-align, padding và phối màu hiện đại.</p>
+    </header>
+
+    <main class="container">
+        <!-- 1. Đường viền của bảng (Viền kép mặc định) -->
+        <section class="card" id="part-1">
+            <div class="card-header">
+                <span class="step-num">Mục 1</span>
+                <h2>1. Đường viền của bảng (border: 1px solid black)</h2>
+            </div>
+            <p class="desc">Áp dụng <code>border: 1px solid black;</code> cho cả <code>table, th, td</code>. Bảng xuất hiện đường viền kép do mỗi ô và bảng đều có viền riêng biệt:</p>
+            <div class="table-container">
+                <table class="table-border-default">
+                    <thead>
+                        <tr>
+                            <th>Họ tên</th>
+                            <th>Tuổi</th>
+                            <th>Lớp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nguyễn Văn A</td>
+                            <td>20</td>
+                            <td>Web</td>
+                        </tr>
+                        <tr>
+                            <td>Trần Thị B</td>
+                            <td>21</td>
+                            <td>Web</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 2. Bỏ các đường viền kép của bảng (border-collapse: collapse) -->
+        <section class="card" id="part-2">
+            <div class="card-header">
+                <span class="step-num">Mục 2</span>
+                <h2>2. Bỏ các đường viền của bảng (border-collapse: collapse)</h2>
+            </div>
+            <p class="desc">Sử dụng <code>border-collapse: collapse;</code> để gộp các đường viền liền kề thành một đường viền duy nhất, giúp bảng gọn gàng và liền mạch:</p>
+            <div class="table-container">
+                <table class="table-collapse">
+                    <thead>
+                        <tr>
+                            <th>Họ tên</th>
+                            <th>Tuổi</th>
+                            <th>Lớp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nguyễn Văn A</td>
+                            <td>20</td>
+                            <td>Web</td>
+                        </tr>
+                        <tr>
+                            <td>Trần Thị B</td>
+                            <td>21</td>
+                            <td>Web</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 3. Chiều rộng và chiều cao của bảng -->
+        <section class="card" id="part-3">
+            <div class="card-header">
+                <span class="step-num">Mục 3</span>
+                <h2>3. Chiều rộng và chiều cao (width: 100%, th height: 50px)</h2>
+            </div>
+            <p class="desc">Đặt <code>width: 100%;</code> để bảng trải rộng toàn bộ khung chứa và <code>height: 50px;</code> cho hàng tiêu đề <code>&lt;th&gt;</code>:</p>
+            <div class="table-container">
+                <table class="table-dimensions">
+                    <thead>
+                        <tr>
+                            <th>Họ tên</th>
+                            <th>Tuổi</th>
+                            <th>Lớp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nguyễn Văn A</td>
+                            <td>20</td>
+                            <td>Web</td>
+                        </tr>
+                        <tr>
+                            <td>Trần Thị B</td>
+                            <td>21</td>
+                            <td>Web</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 4. Căn chỉnh theo chiều ngang (text-align) -->
+        <section class="card" id="part-4">
+            <div class="card-header">
+                <span class="step-num">Mục 4</span>
+                <h2>4. Căn chỉnh theo chiều ngang (th text-align: left)</h2>
+            </div>
+            <p class="desc">Mặc định tiêu đề <code>&lt;th&gt;</code> được căn giữa. Sử dụng <code>text-align: left;</code> để căn toàn bộ tiêu đề về bên trái cùng hàng với dữ liệu:</p>
+            <div class="table-container">
+                <table class="table-align-h">
+                    <thead>
+                        <tr>
+                            <th>Họ tên</th>
+                            <th>Tuổi</th>
+                            <th>Lớp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nguyễn Văn A</td>
+                            <td>20</td>
+                            <td>Web</td>
+                        </tr>
+                        <tr>
+                            <td>Trần Thị B</td>
+                            <td>21</td>
+                            <td>Web</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 5. Căn chỉnh theo chiều dọc (vertical-align) -->
+        <section class="card" id="part-5">
+            <div class="card-header">
+                <span class="step-num">Mục 5</span>
+                <h2>5. Căn chỉnh theo chiều dọc (td vertical-align: bottom, height: 80px)</h2>
+            </div>
+            <p class="desc">Thiết lập chiều cao ô <code>height: 80px;</code> và sử dụng <code>vertical-align: bottom;</code> để đẩy dữ liệu xuống sát đáy ô:</p>
+            <div class="table-container">
+                <table class="table-align-v">
+                    <thead>
+                        <tr>
+                            <th>Họ tên</th>
+                            <th>Tuổi</th>
+                            <th>Lớp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nguyễn Văn A</td>
+                            <td>20</td>
+                            <td>Web</td>
+                        </tr>
+                        <tr>
+                            <td>Trần Thị B</td>
+                            <td>21</td>
+                            <td>Web</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 6. Padding trong bảng -->
+        <section class="card" id="part-6">
+            <div class="card-header">
+                <span class="step-num">Mục 6</span>
+                <h2>6. Padding trong bảng (th, td padding: 15px)</h2>
+            </div>
+            <p class="desc">Tạo khoảng cách đệm <code>padding: 15px;</code> giữa nội dung và đường viền ô, giúp các dòng dữ liệu thông thoáng và dễ đọc hơn:</p>
+            <div class="table-container">
+                <table class="table-padding">
+                    <thead>
+                        <tr>
+                            <th>Họ tên</th>
+                            <th>Tuổi</th>
+                            <th>Lớp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nguyễn Văn A</td>
+                            <td>20</td>
+                            <td>Web</td>
+                        </tr>
+                        <tr>
+                            <td>Trần Thị B</td>
+                            <td>21</td>
+                            <td>Web</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 7. Màu sắc trong bảng -->
+        <section class="card" id="part-7">
+            <div class="card-header">
+                <span class="step-num">Mục 7</span>
+                <h2>7. Màu sắc trong bảng (Màu nền tối, chữ trắng, viền rõ nét)</h2>
+            </div>
+            <p class="desc">Phối màu chuyên nghiệp với tiêu đề nền xám tối <code>#333</code> chữ trắng, dòng dữ liệu nền xám nhạt <code>#f2f2f2</code> chữ xám đậm:</p>
+            <div class="table-container">
+                <table class="table-colors">
+                    <thead>
+                        <tr>
+                            <th>Họ tên</th>
+                            <th>Tuổi</th>
+                            <th>Lớp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nguyễn Văn A</td>
+                            <td>20</td>
+                            <td>Web</td>
+                        </tr>
+                        <tr>
+                            <td>Trần Thị B</td>
+                            <td>21</td>
+                            <td>Web</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 8. Bài tập tổng hợp: Bảng học viên chuẩn UI/UX -->
+        <section class="card highlight-card" id="part-8">
+            <div class="card-header">
+                <span class="step-num step-highlight">Mục 8 &bull; Tổng hợp</span>
+                <h2>8. Bài tập tổng hợp: Bảng quản lý học viên chuẩn UI/UX hiện đại</h2>
+            </div>
+            <p class="desc">Kết hợp toàn diện các thuộc tính: border-collapse, width: 100%, padding tối ưu, zebra striping (kẻ sọc xen kẽ), hiệu ứng hover và badge trạng thái:</p>
+            
+            <div class="table-container">
+                <table class="table-pro">
+                    <thead>
+                        <tr>
+                            <th style="width: 10%;">Mã HV</th>
+                            <th style="width: 30%;">Họ và tên</th>
+                            <th style="width: 15%;">Tuổi</th>
+                            <th style="width: 25%;">Khóa học</th>
+                            <th style="width: 20%; text-align: center;">Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="code-font">CG-101</td>
+                            <td><strong>Nguyễn Văn A</strong></td>
+                            <td>20</td>
+                            <td>Lập trình Web Front-end</td>
+                            <td style="text-align: center;"><span class="badge-status badge-active">Đang học</span></td>
+                        </tr>
+                        <tr>
+                            <td class="code-font">CG-102</td>
+                            <td><strong>Trần Thị B</strong></td>
+                            <td>21</td>
+                            <td>Lập trình Web Fullstack</td>
+                            <td style="text-align: center;"><span class="badge-status badge-completed">Xuất sắc</span></td>
+                        </tr>
+                        <tr>
+                            <td class="code-font">CG-103</td>
+                            <td><strong>Lê Hoàng C</strong></td>
+                            <td>22</td>
+                            <td>Khoa học Dữ liệu & AI</td>
+                            <td style="text-align: center;"><span class="badge-status badge-active">Đang học</span></td>
+                        </tr>
+                        <tr>
+                            <td class="code-font">CG-104</td>
+                            <td><strong>Phạm Minh D</strong></td>
+                            <td>19</td>
+                            <td>Lập trình Web Front-end</td>
+                            <td style="text-align: center;"><span class="badge-status badge-active">Đang học</span></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="table-footer-note">
+                                💡 <em>Bảng ứng dụng border-collapse, font Plus Jakarta Sans, JetBrains Mono, zebra striping và transition mượt mà.</em>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2026 [Thực hành] Bảng trong CSS - CodeGym Lab. Hoàn thành theo tiêu chuẩn W3C.</p>
+        <p>
+            <a href="https://github.com/proyctk03-eng/thuc-hanh-bang-trong-css" target="_blank" rel="noopener">
+                Repository GitHub: proyctk03-eng/thuc-hanh-bang-trong-css
+            </a>
+        </p>
+    </footer>
+</body>
+</html>
